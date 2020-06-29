@@ -1,13 +1,8 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes, CanLoad } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { UsuarioGuard } from './guards/usuario.guard';
 
 const routes: Routes = [
-  {
-    path: 'main',
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
-    canLoad: [UsuarioGuard]
-  },
   {
     path: '',
     redirectTo: 'login',
@@ -15,7 +10,17 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule),
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then(m => m.PerfilPageModule),
+    canLoad: [UsuarioGuard]
+  },
+  {
+    path: 'main',
+    loadChildren: () => import('./pages/inicio/inicio.module').then(m => m.InicioPageModule),
+    canLoad: [UsuarioGuard]
   },
 ];
 

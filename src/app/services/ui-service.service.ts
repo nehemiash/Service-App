@@ -26,7 +26,12 @@ export class UiServiceService {
       color,
       position: 'top',
       duration: 2000,
-      animated: true
+      animated: true,
+      buttons: [{
+        text: 'OK',
+        role: 'cancel'
+      }
+      ]
     });
     toast.present();
   }

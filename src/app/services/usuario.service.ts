@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Usuario, RespUser } from '../interfaces/interfaces';
+import { Usuario } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 
 const URL = environment.url;
@@ -13,7 +13,7 @@ const URL = environment.url;
 export class UsuarioService {
 
   token: string = null;
-  usuario: Usuario = {};
+  private usuario: Usuario = {};
 
   constructor(
     private http: HttpClient,
@@ -28,12 +28,11 @@ export class UsuarioService {
     return new Promise(resolve => {
 
       this.http.post(`${URL}/login`, data)
-        .subscribe(resp => {
+        .subscribe(async resp => {
 
           if (resp['ok']) {
-            this.guardarToken(resp['token']);
+            await this.guardarToken(resp['token']);
             resolve(true);
-            let tok = resp['token'];
           } else {
             this.token = null;
             this.storage.clear();
@@ -50,14 +49,14 @@ export class UsuarioService {
     return new Promise(resolve => {
 
       this.http.post(`${URL}/usuario`, usuario)
-        .subscribe(resp => {
+        .subscribe(async resp => {
 
           if (resp['err']) {
             this.token = null;
             this.storage.clear();
             resolve(false);
           } else {
-            this.guardarToken(resp['token']);
+            await this.guardarToken(resp['token']);
             resolve(true);
           }
         });
@@ -66,10 +65,19 @@ export class UsuarioService {
     });
   }
 
+  getUsuario() {
+    if (!this.usuario._id) {
+      this.validaToken();
+    }
+    return { ...this.usuario };
+  }
+
   async guardarToken(token: string) {
 
     this.token = token;
     await this.storage.set('token', token);
+
+    await this.validaToken();
 
   }
 
@@ -106,6 +114,35 @@ export class UsuarioService {
   async cargarToken() {
     this.token = await this.storage.get('token') || null;
 
+  }
+
+  actualizarUsuario(usuario: Usuario) {
+
+    const headers = new HttpHeaders({
+      'token': this.token
+    });
+
+    return new Promise(resolve => {
+      this.http.put(`${URL}/usuario/${this.usuario._id}`, usuario, { headers })
+        .subscribe(resp => {
+          if (resp['ok']) {
+            this.guardarToken(resp['token']);
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+
+        });
+    });
+
+
+  }
+
+  logout() {
+    this.token = null;
+    this.usuario = null;
+    this.storage.clear();
+    this.navCtrl.navigateRoot('/login', { animated: true });
   }
 
 }

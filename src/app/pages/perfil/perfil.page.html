@@ -1,0 +1,50 @@
+<app-header titulo="Mi Perfil"></app-header>
+
+<ion-content>
+    <ion-row class="top-20">
+        <ion-col size="12" class="ion-text-center">
+            <img src="assets/avatars/av-8.png" class="img-avatar" />
+        </ion-col>
+    </ion-row>
+
+    <form (ngSubmit)="actualizar(fActualizar)" #fActualizar="ngForm">
+        <ion-row>
+            <ion-col>
+                <ion-list>
+                    <ion-item>
+                        <ion-label>Email</ion-label>
+                        <ion-input [(ngModel)]="usuario.email" name="email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label>Nombre</ion-label>
+                        <ion-input [(ngModel)]="usuario.nombre" name="nombre" type="text" required></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Telefono</ion-label>
+                        <ion-input [(ngModel)]="usuario.telefono" name="telefono" type="text" required></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Rol</ion-label>
+                        <ion-input [(ngModel)]="rol" name="role" type="text" disabled="true"></ion-input>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col class="ion-text-center">
+                <ion-button type="submit" color="primary" shape="round" [disabled]="fActualizar.invalid">
+                    Actualizar
+                </ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row class="top-100">
+            <ion-col class="ion-text-center">
+                <ion-button (click)="logout()" color="danger" shape="round">
+                    <ion-label>Cerrar Sesion</ion-label>
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </form>
+</ion-content>

@@ -34,3 +34,9 @@ export interface RespUserDet {
     creado: string;
     telefono: string;
 }
+
+export interface OpcionesMenu {
+    icon: string;
+    name: string;
+    redirectTo: string;
+}
