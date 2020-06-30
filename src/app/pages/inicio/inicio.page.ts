@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { Usuario } from 'src/app/interfaces/interfaces';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-inicio',

@@ -11,7 +11,7 @@ import { UiServiceService } from '../../services/ui-service.service';
 })
 export class PerfilPage implements OnInit {
 
-  usuario: Usuario = {};
+  public userPerfil: Usuario = {};
   rol = '';
 
   constructor(
@@ -20,7 +20,7 @@ export class PerfilPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.usuario = this.usuarioService.getUsuario();
+    this.userPerfil = this.usuarioService.getUsuario();
     this.getRole();
   }
 
@@ -30,7 +30,7 @@ export class PerfilPage implements OnInit {
   }
 
   getRole() {
-    switch (this.usuario.role) {
+    switch (this.userPerfil.role) {
       case 'USER_ROLE':
         this.rol = 'Usuario estandar';
         break;
@@ -43,7 +43,7 @@ export class PerfilPage implements OnInit {
   async actualizar(fActualizar: NgForm) {
     if (fActualizar.invalid) { return; }
 
-    const actualizado = await this.usuarioService.actualizarUsuario(this.usuario);
+    const actualizado = await this.usuarioService.actualizarUsuario(this.userPerfil);
 
     if (actualizado) {
       this.uiService.mostrarToast('Se han guardado los cambios', 'success');

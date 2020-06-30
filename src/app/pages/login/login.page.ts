@@ -45,6 +45,7 @@ export class LoginPage implements AfterViewInit {
 
     if (valido) {
       this.navCtrl.navigateRoot('main', { animated: true });
+
     } else {
       this.uiService.mostrarAlerta('El usuario o contraseña no son correctos.');
     }

@@ -1,12 +1,18 @@
-<ion-menu side="start" menuId="menuPrincipal" contentId="principal" type="push">
+<ion-menu side="start" menuId="menuPrincipal" contentId="principal" type="push" (ionWillOpen)="onLoad()">
     <ion-header>
         <ion-toolbar color="primary">
-            <ion-title>Menu Principal</ion-title>
+            <ion-avatar slot="start" class="">
+                <ion-img src="/assets/avatars/av-8.png"></ion-img>
+            </ion-avatar>
+            <ion-label class="izquierda10 negrita">{{ usuario.nombre }}</ion-label>
+            <br />
+            <ion-label class="izquierda10 tamanoS">{{ usuario.email }}</ion-label>
         </ion-toolbar>
     </ion-header>
+
     <ion-content>
         <ion-list>
-            <ion-menu-toggle *ngFor="let m of menuOpts | async">
+            <ion-menu-toggle *ngFor="let m of menuOpts | async" onclick="">
                 <ion-item [routerLink]="m.redirectTo">
                     <ion-icon [name]="m.icon" slot="start"></ion-icon>
                     <ion-label>{{ m.name }}</ion-label>
