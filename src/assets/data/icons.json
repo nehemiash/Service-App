@@ -1,0 +1,457 @@
+[{
+        "icon": "airplane-outline"
+    },
+    {
+        "icon": "alarm-outline"
+    },
+    {
+        "icon": "albums-outline"
+    },
+    {
+        "icon": "american-football-outline"
+    },
+    {
+        "icon": "apps-outline"
+    },
+    {
+        "icon": "archive-outline"
+    },
+    {
+        "icon": "at-outline"
+    },
+    {
+        "icon": "attach-outline"
+    },
+    {
+        "icon": "bandage-outline"
+    },
+    {
+        "icon": "barbell-outline"
+    },
+    {
+        "icon": "barcode-outline"
+    },
+    {
+        "icon": "baseball-outline"
+    },
+    {
+        "icon": "battery-full-outline"
+    },
+    {
+        "icon": "bed-outline"
+    },
+    {
+        "icon": "beer-outline"
+    },
+    {
+        "icon": "bicycle-outline"
+    },
+    {
+        "icon": "bluetooth-outline"
+    },
+    {
+        "icon": "boat-outline"
+    },
+    {
+        "icon": "body-outline"
+    },
+    {
+        "icon": "bonfire-outline"
+    },
+    {
+        "icon": "book-outline"
+    },
+    {
+        "icon": "bookmark-outline"
+    },
+    {
+        "icon": "briefcase-outline"
+    },
+    {
+        "icon": "browsers-outline"
+    },
+    {
+        "icon": "brush-outline"
+    },
+    {
+        "icon": "bug-outline"
+    },
+    {
+        "icon": "build-outline"
+    },
+    {
+        "icon": "bulb-outline"
+    },
+    {
+        "icon": "bus-outline"
+    },
+    {
+        "icon": "business-outline"
+    },
+    {
+        "icon": "cafe-outline"
+    },
+    {
+        "icon": "calculator-outline"
+    },
+    {
+        "icon": "calendar-outline"
+    },
+    {
+        "icon": "call-outline"
+    },
+    {
+        "icon": "camera-outline"
+    },
+    {
+        "icon": "car-sport-outline"
+    },
+    {
+        "icon": "card-outline"
+    },
+    {
+        "icon": "cart-outline"
+    },
+    {
+        "icon": "cash-outline"
+    },
+    {
+        "icon": "cellular-outline"
+    },
+    {
+        "icon": "chatbox-ellipses-outline"
+    },
+    {
+        "icon": "checkbox-outline"
+    },
+    {
+        "icon": "checkmark-outline"
+    },
+    {
+        "icon": "clipboard-outline"
+    },
+    {
+        "icon": "close-circle-outline"
+    },
+    {
+        "icon": "cloud-outline"
+    },
+    {
+        "icon": "cog-outline"
+    },
+    {
+        "icon": "color-fill-outline"
+    },
+    {
+        "icon": "color-filter-outline"
+    },
+    {
+        "icon": "color-palette-outline"
+    },
+    {
+        "icon": "color-wand-outline"
+    },
+    {
+        "icon": "compass-outline"
+    },
+    {
+        "icon": "construct-outline"
+    },
+    {
+        "icon": "contrast-outline"
+    },
+    {
+        "icon": "cut-outline"
+    },
+    {
+        "icon": "copy-outline"
+    },
+    {
+        "icon": "cube-outline"
+    },
+    {
+        "icon": "desktop-outline"
+    },
+    {
+        "icon": "ear-outline"
+    },
+    {
+        "icon": "document-text-outline"
+    },
+    {
+        "icon": "earth-outline"
+    },
+    {
+        "icon": "easel-outline"
+    },
+    {
+        "icon": "egg-outline"
+    },
+    {
+        "icon": "ellipsis-horizontal-circle-outline"
+    },
+    {
+        "icon": "ellipsis-vertical-circle-outline"
+    },
+    {
+        "icon": "expand-outline"
+    },
+    {
+        "icon": "eye-outline"
+    },
+    {
+        "icon": "eyedrop-outline"
+    },
+    {
+        "icon": "fast-food-outline"
+    },
+    {
+        "icon": "file-tray-full-outline"
+    },
+    {
+        "icon": "file-tray-stacked-outline"
+    },
+    {
+        "icon": "film-outline"
+    },
+    {
+        "icon": "finger-print-outline"
+    },
+    {
+        "icon": "flag-outline"
+    },
+    {
+        "icon": "flame-outline"
+    },
+    {
+        "icon": "flash-outline"
+    },
+    {
+        "icon": "flashlight-outline"
+    },
+    {
+        "icon": "flask-outline"
+    },
+    {
+        "icon": "flower-outline"
+    },
+    {
+        "icon": "folder-open-outline"
+    },
+    {
+        "icon": "football-outline"
+    },
+    {
+        "icon": "game-controller-outline"
+    },
+    {
+        "icon": "gift-outline"
+    },
+    {
+        "icon": "glasses-outline"
+    },
+    {
+        "icon": "globe-outline"
+    },
+    {
+        "icon": "grid-outline"
+    },
+    {
+        "icon": "hammer-outline"
+    },
+    {
+        "icon": "hardware-chip-outline"
+    },
+    {
+        "icon": "headset-outline"
+    },
+    {
+        "icon": "home-outline"
+    },
+    {
+        "icon": "hourglass-outline"
+    },
+    {
+        "icon": "ice-cream-outline"
+    },
+    {
+        "icon": "images-outline"
+    },
+    {
+        "icon": "information-circle-outline"
+    },
+    {
+        "icon": "journal-outline"
+    },
+    {
+        "icon": "key-outline"
+    },
+    {
+        "icon": "keypad-outline"
+    },
+    {
+        "icon": "laptop-outline"
+    },
+    {
+        "icon": "leaf-outline"
+    },
+    {
+        "icon": "location-outline"
+    },
+    {
+        "icon": "lock-closed-outline"
+    },
+    {
+        "icon": "magnet-outline"
+    },
+    {
+        "icon": "mail-outline"
+    },
+    {
+        "icon": "map-outline"
+    },
+    {
+        "icon": "megaphone-outline"
+    },
+    {
+        "icon": "mic-outline"
+    },
+    {
+        "icon": "moon-outline"
+    },
+    {
+        "icon": "musical-notes-outline"
+    },
+    {
+        "icon": "navigate-outline"
+    },
+    {
+        "icon": "notifications-outline"
+    },
+    {
+        "icon": "nutrition-outline"
+    },
+    {
+        "icon": "paw-outline"
+    },
+    {
+        "icon": "pencil-outline"
+    },
+    {
+        "icon": "person-outline"
+    },
+    {
+        "icon": "phone-landscape-outline"
+    },
+    {
+        "icon": "phone-portrait-outline"
+    },
+    {
+        "icon": "pie-chart-outline"
+    },
+    {
+        "icon": "pizza-outline"
+    },
+    {
+        "icon": "podium-outline"
+    },
+    {
+        "icon": "pricetag-outline"
+    },
+    {
+        "icon": "print-outline"
+    },
+    {
+        "icon": "pulse-outline"
+    },
+    {
+        "icon": "qr-code-outline"
+    },
+    {
+        "icon": "radio-outline"
+    },
+    {
+        "icon": "refresh-outline"
+    },
+    {
+        "icon": "save-outline"
+    },
+    {
+        "icon": "rocket-outline"
+    },
+    {
+        "icon": "server-outline"
+    },
+    {
+        "icon": "settings-outline"
+    },
+    {
+        "icon": "shield-outline"
+    },
+    {
+        "icon": "skull-outline"
+    },
+    {
+        "icon": "shirt-outline"
+    },
+    {
+        "icon": "speedometer-outline"
+    },
+    {
+        "icon": "star-outline"
+    },
+    {
+        "icon": "stats-chart-outline"
+    },
+    {
+        "icon": "subway-outline"
+    },
+    {
+        "icon": "tablet-landscape-outline"
+    },
+    {
+        "icon": "tablet-portrait-outline"
+    },
+    {
+        "icon": "thermometer-outline"
+    },
+    {
+        "icon": "time-outline"
+    },
+    {
+        "icon": "today-outline"
+    },
+    {
+        "icon": "trash-outline"
+    },
+    {
+        "icon": "trophy-outline"
+    },
+    {
+        "icon": "tv-outline"
+    },
+    {
+        "icon": "volume-high-outline"
+    },
+    {
+        "icon": "wifi-outline"
+    },
+    {
+        "icon": "watch-outline"
+    },
+    {
+        "icon": "wallet-outline"
+    },
+    {
+        "icon": "videocam-outline"
+    },
+    {
+        "icon": "warning-outline"
+    },
+    {
+        "icon": "water-outline"
+    },
+    {
+        "icon": "woman-outline"
+    }
+]

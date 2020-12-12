@@ -7,5 +7,30 @@
         "icon": "person",
         "name": "Mi Perfil",
         "redirectTo": "/perfil"
+    },
+    {
+        "icon": "people",
+        "name": "Clientes",
+        "redirectTo": "/clientes"
+    },
+    {
+        "icon": "cube",
+        "name": "Productos",
+        "redirectTo": "/productos"
+    },
+    {
+        "icon": "pricetags",
+        "name": "Categorias",
+        "redirectTo": "/categorias"
+    },
+    {
+        "icon": "newspaper",
+        "name": "Ordenes",
+        "redirectTo": "/ordenes"
+    },
+    {
+        "icon": "hardware-chip",
+        "name": "Repuestos",
+        "redirectTo": "/repuestos"
     }
 ]

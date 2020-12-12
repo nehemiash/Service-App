@@ -1,10 +1,9 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { IonSlides, NavController } from '@ionic/angular';
+import { IonRouterOutlet, IonSlides, MenuController, NavController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
 import { UiServiceService } from '../../services/ui-service.service';
 import { Usuario } from '../../interfaces/interfaces';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -14,28 +13,46 @@ export class LoginPage implements AfterViewInit {
 
   @ViewChild('slidePrincipal') slides: IonSlides;
 
+  public alias = '';
+
   loginUser = {
     email: 'nehemiashp@gmail.com',
-    password: 'anacleto'
+    password: '1234'
 
   };
 
   registerUser: Usuario = {
     email: 'test@test.com',
-    password: '123456',
+    password: '1234',
     nombre: 'test',
-    telefono: '0994123123'
+    telefono: '0994123123',
+    funcion: 'Tecnico de Apple',
+
   };
+
+  splitPaneState: boolean;
 
   constructor(
     private usuarioService: UsuarioService,
     private navCtrl: NavController,
-    private uiService: UiServiceService
+    private uiService: UiServiceService,
+    public menu: MenuController,
+    private routerOutlet: IonRouterOutlet
   ) { }
 
   ngAfterViewInit() {
     this.slides.lockSwipes(true);
+    this.menu.enable(false);
+    this.menu.swipeGesture(false);
   }
+
+  ionViewWillLeave() {
+
+    this.menu.enable(true);
+    this.menu.swipeGesture(true);
+    this.routerOutlet.swipeGesture = true;
+  }
+
 
   async login(fLogin: NgForm) {
 
@@ -47,7 +64,7 @@ export class LoginPage implements AfterViewInit {
       this.navCtrl.navigateRoot('main', { animated: true });
 
     } else {
-      this.uiService.mostrarAlerta('El usuario o contraseña no son correctos.');
+      this.uiService.mostrarAlerta('Error', 'El usuario o contraseña no son correctos.');
     }
 
   }
@@ -61,7 +78,7 @@ export class LoginPage implements AfterViewInit {
     if (valido) {
       this.navCtrl.navigateRoot('main', { animated: true });
     } else {
-      this.uiService.mostrarAlerta('El correo electronico ya existe');
+      this.uiService.mostrarAlerta('error', 'El correo electronico ya existe');
     }
 
   }

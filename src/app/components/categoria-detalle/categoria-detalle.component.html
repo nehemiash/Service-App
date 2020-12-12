@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title class="negrita">Informacion de la Categoria</ion-title>
+        <ion-buttons slot="start">
+            <ion-button slot="end">
+                <ion-icon name="hardware-chip" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="cerrarModal()" shape="round">
+                <ion-icon name="close" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="grid-max-width700 ion-no-padding fuenteChica">
+        <ion-row>
+            <ion-col size="12">
+                <ion-item lines="full">
+                    <ion-label class="negrita" color="dark">Descripcion:</ion-label>
+                    <ion-input [(ngModel)]="categoria.descripcion" name="nombre" type="name" readonly [readonly]="editState" class="ion-text-uppercase"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col size="12">
+                <ion-item lines="full">
+                    <ion-label class="negrita" color="dark">Tipo:</ion-label>
+                    <ion-input [(ngModel)]="categoria.tipo" name="nombre" type="name" readonly [readonly]="editState" class="ion-text-uppercase"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="ion-text-center top20">
+                <ion-button (click)="editar()" shape="round" *ngIf="editState" color="warning">
+                    <ion-label>EDITAR</ion-label>
+                </ion-button>
+                <ion-button type="submit" color="success" shape="round" (click)="actualizar()" *ngIf="!editState">
+                    <ion-label>GUARDAR</ion-label>
+                </ion-button>
+                <ion-button type="submit" color="danger" shape="round" (click)="cerrarModal()" *ngIf="!editState">
+                    <ion-label>CANCELAR</ion-label>
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

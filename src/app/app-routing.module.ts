@@ -22,6 +22,28 @@ const routes: Routes = [
     loadChildren: () => import('./pages/inicio/inicio.module').then(m => m.InicioPageModule),
     canLoad: [UsuarioGuard]
   },
+  {
+    path: 'clientes',
+    loadChildren: () => import('./pages/clientes/clientes.module').then(m => m.ClientesPageModule),
+    canLoad: [UsuarioGuard]
+
+  },
+  {
+    path: 'productos',
+    loadChildren: () => import('./pages/productos/productos.module').then( m => m.ProductosPageModule)
+  },
+  {
+    path: 'categorias',
+    loadChildren: () => import('./pages/categorias/categorias.module').then( m => m.CategoriasPageModule)
+  },
+  {
+    path: 'ordenes',
+    loadChildren: () => import('./pages/ordenes/ordenes.module').then( m => m.OrdenesPageModule)
+  },
+  {
+    path: 'repuestos',
+    loadChildren: () => import('./pages/repuestos/repuestos.module').then( m => m.RepuestosPageModule)
+  },
 ];
 
 @NgModule({

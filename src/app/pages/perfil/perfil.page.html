@@ -1,50 +1,61 @@
 <app-header titulo="Mi Perfil"></app-header>
 
 <ion-content>
-    <ion-row class="top-20">
-        <ion-col size="12" class="ion-text-center">
-            <img src="assets/avatars/av-8.png" class="img-avatar" />
-        </ion-col>
-    </ion-row>
-
-    <form (ngSubmit)="actualizar(fActualizar)" #fActualizar="ngForm">
-        <ion-row>
-            <ion-col>
-                <ion-list>
-                    <ion-item>
-                        <ion-label>Email</ion-label>
-                        <ion-input [(ngModel)]="userPerfil.email" name="email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"></ion-input>
-                    </ion-item>
-
-                    <ion-item>
-                        <ion-label>Nombre</ion-label>
-                        <ion-input [(ngModel)]="userPerfil.nombre" name="nombre" type="text" required></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label>Telefono</ion-label>
-                        <ion-input [(ngModel)]="userPerfil.telefono" name="telefono" type="text" required></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label>Rol</ion-label>
-                        <ion-input [(ngModel)]="rol" name="role" type="text" disabled="true"></ion-input>
-                    </ion-item>
-                </ion-list>
+    <ion-grid class="grid-max-width">
+        <ion-row class="top-20">
+            <ion-col size="12" class="ion-text-center">
+                <img src="assets/avatars/av-8.png" class="img-avatar" />
             </ion-col>
         </ion-row>
 
-        <ion-row>
-            <ion-col class="ion-text-center">
-                <ion-button type="submit" color="primary" shape="round" [disabled]="fActualizar.invalid">
-                    Actualizar
-                </ion-button>
-            </ion-col>
-        </ion-row>
-        <ion-row class="top-100">
-            <ion-col class="ion-text-center">
-                <ion-button (click)="logout()" color="danger" shape="round">
-                    <ion-label>Cerrar Sesion</ion-label>
-                </ion-button>
-            </ion-col>
-        </ion-row>
-    </form>
+        <form (ngSubmit)="actualizar(fActualizar)" #fActualizar="ngForm">
+            <ion-row>
+                <ion-col>
+                    <ion-list>
+                        <ion-item lines="full">
+                            <ion-label class="negrita" color="dark" position="fixed">Email:</ion-label>
+                            <ion-input [(ngModel)]="userPerfil.email" name="email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"></ion-input>
+                        </ion-item>
+
+                        <ion-item lines="full">
+                            <ion-label class="negrita" color="dark" position="fixed">Nombre</ion-label>
+                            <ion-input [(ngModel)]="userPerfil.nombre" name="nombre" type="text" required></ion-input>
+                        </ion-item>
+                        <ion-item lines="full">
+                            <ion-label class="negrita" color="dark" position="fixed">Teléfono:</ion-label>
+                            <ion-input [(ngModel)]="userPerfil.telefono" name="telefono" type="text" required></ion-input>
+                        </ion-item>
+                        <ion-item lines="full">
+                            <ion-label class="negrita" color="dark" position="fixed">Función:</ion-label>
+                            <ion-input [(ngModel)]="userPerfil.funcion" name="funcion" type="text" required Readonly></ion-input>
+                        </ion-item>
+                        <ion-item lines="full">
+                            <ion-label class="negrita" color="dark" position="fixed">Rol:</ion-label>
+                            <ion-input [(ngModel)]="rol" name="role" type="text" Readonly></ion-input>
+                        </ion-item>
+                        <ion-item lines="full">
+                            <ion-label class="negrita" color="dark">Tecnico:</ion-label>
+                            <ion-toggle mode="md" [(ngModel)]="userPerfil.tecnico" name="tecnico"></ion-toggle>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col class="ion-text-center">
+                    <ion-button type="submit" color="success" shape="round" [disabled]="fActualizar.invalid">
+                        <ion-label>GUARDAR</ion-label>
+                        <!-- <ion-icon slot="icon-only" name="save"></ion-icon> -->
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-row class="top-50">
+                <ion-col class="ion-text-center">
+                    <ion-button (click)="logout()" color="danger" shape="round">
+                        <ion-label>CERRAR SESION</ion-label>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </form>
+    </ion-grid>
 </ion-content>

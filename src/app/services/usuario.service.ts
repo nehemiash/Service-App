@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Usuario } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
-
 const URL = environment.url;
 
 @Injectable({
@@ -96,7 +95,7 @@ export class UsuarioService {
         'token': this.token
       });
 
-      this.http.get(`${URL}/usuario/update/`, { headers })
+      this.http.get(`${URL}/usuario/verificar/`, { headers })
         .subscribe(resp => {
           if (resp['ok']) {
             this.usuario = resp['usuario'];
@@ -143,6 +142,7 @@ export class UsuarioService {
     this.usuario = null;
     this.storage.clear();
     this.navCtrl.navigateRoot('/login', { animated: true });
+    window.location.reload();
   }
 
 }

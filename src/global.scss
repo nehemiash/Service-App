@@ -28,6 +28,68 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@font-face {
+    font-family: "San Francisco";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./assets/fonts/SF-Pro.ttf");
+}
+
+ion-toggle {
+    --background-checked: #4aa3a7;
+    --handle-background-checked: #fff;
+}
+
+toast-wrapper {
+    --box-shadow: 1px 1px 11px -1px darkslategrey !important;
+    box-shadow: 1px 1px 11px -1px darkslategrey !important;
+}
+
 .negrita {
     font-weight: bold !important;
+}
+
+.top20 {
+    margin-top: 20px;
+}
+
+.top50 {
+    margin-top: 50px;
+}
+
+.bottom20 {
+    margin-bottom: 20px !important;
+}
+
+.bottom50 {
+    margin-bottom: 50px;
+}
+
+.grid-max-width {
+    max-width: 550px !important;
+}
+
+.grid-max-width500 {
+    max-width: 500px !important;
+}
+
+.grid-max-width700 {
+    max-width: 700px !important;
+}
+
+.button-max-width {
+    max-width: 150px !important;
+}
+
+.right20 {
+    margin-right: 20px;
+}
+
+.top-20px {
+    margin-top: -20px;
+}
+
+.paddingHeader {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
 }

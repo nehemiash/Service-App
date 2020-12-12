@@ -1,0 +1,73 @@
+<app-header titulo="Categorías"></app-header>
+
+<ion-content [scrollEvents]="true" class="ion-padding">
+    <ion-refresher slot="fixed" (ionRefresh)="recargar($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col size="6">
+                <ion-grid class="ion-text-uppercase">
+                    <ion-row class="tablaHeader">
+                        <ion-col>
+                            <ion-item lines="none" color="secondary">
+                                <ion-icon slot="start" name="cube"></ion-icon>
+                                <ion-label>
+                                    <h1>Productos</h1>
+                                </ion-label>
+                                <ion-button (click)="borrarCate()" color="secondary" slot="end" size="default">
+                                    <ion-icon *ngIf="!eliminar" name="trash"></ion-icon>
+                                    <ion-icon *ngIf="eliminar" name="close"></ion-icon>
+                                </ion-button>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row *ngFor="let cat of categ;let i = index" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+                        <ion-col size="1">{{i+1}}</ion-col>
+                        <ion-col button (click)="editarCat(cat._id)">{{cat.descripcion}}</ion-col>
+                        <ion-col size="1">
+                            <ion-icon *ngIf="eliminar" size="small" (click)="borrarCat(cat._id, cat.descripcion )" color="danger" name="close"></ion-icon>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row class="tablaFooter"> </ion-row>
+                </ion-grid>
+            </ion-col>
+            <ion-col size="6">
+                <ion-grid class="ion-text-uppercase">
+                    <ion-row class="tablaHeader">
+                        <ion-col>
+                            <ion-item lines="none" color="secondary">
+                                <ion-icon slot="start" name="hardware-chip"></ion-icon>
+                                <ion-label>
+                                    <h1>Repuestos</h1>
+                                </ion-label>
+                                <ion-button (click)="borrarCate2()" color="secondary" slot="end" size="default">
+                                    <ion-icon *ngIf="!eliminar2" name="trash"></ion-icon>
+                                    <ion-icon *ngIf="eliminar2" name="close"></ion-icon>
+                                </ion-button>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row *ngFor="let cat2 of categ2;let i = index" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+                        <ion-col size="1">{{i+1}}</ion-col>
+                        <ion-col button (click)="editarCat(cat2._id)">{{cat2.descripcion}}</ion-col>
+                        <ion-col size="1">
+                            <ion-icon *ngIf="eliminar2" size="small" (click)="borrarCat(cat2._id, cat2.descripcion )" color="danger" name="close"></ion-icon>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="tablaFooter"></ion-row>
+                </ion-grid>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="bottom20 right20">
+        <ion-fab-button (click)="onClick()" color="secondary">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

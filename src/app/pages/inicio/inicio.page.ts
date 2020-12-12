@@ -1,5 +1,5 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { Usuario } from 'src/app/interfaces/interfaces';
+import { Component, OnInit } from '@angular/core';
+import { Usuario } from '../../interfaces/interfaces';
 import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
@@ -9,9 +9,17 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class InicioPage implements OnInit {
 
-  constructor() { }
+  usuario: Usuario = {};
+
+  constructor(
+    private usuarioService: UsuarioService
+  ) { }
+
+
 
   ngOnInit() {
+    this.usuario = this.usuarioService.getUsuario();
   }
+
 
 }

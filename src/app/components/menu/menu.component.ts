@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Observable } from 'rxjs';
 import { OpcionesMenu, Usuario } from '../../interfaces/interfaces';
-import { UsuarioService } from '../../services/usuario.service';
-
+// import { UsuarioService } from '../../services/usuario.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -11,22 +10,40 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class MenuComponent implements OnInit {
 
-  usuario: Usuario = {};
-
+  // usuario: Usuario = {};
   menuOpts: Observable<OpcionesMenu[]>;
+  usuario: Usuario = {};
+  date: string;
 
   constructor(
     private dataService: DataService,
-    private usuarioService: UsuarioService
+    // private usuarioService: UsuarioService,
 
-  ) { }
+  ) {
+  }
 
-  ngOnInit() {
+
+  async ngOnInit() {
     this.menuOpts = this.dataService.getMenuOpts();
+    this.date = Date.now().toString();
+    this.reloj();
+
+    // this.usuario = this.usuarioService.getUsuario();
   }
 
-  onLoad() {
-    this.usuario = this.usuarioService.getUsuario();
+  reloj() {
+
+    setInterval(() => {
+      this.date = Date.now().toString();
+    }, 1000);
+
+
   }
+
+
+  // async onLoad() {
+  //   this.usuario = this.usuarioService.getUsuario();
+  // }
+
 
 }

@@ -1,0 +1,77 @@
+<app-header titulo="Repuestos"></app-header>
+
+<ion-content class="ion-padding">
+    <ion-refresher slot="fixed" (ionRefresh)="recargar($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar placeholder="Buscar Producto" inputmode="decimal" type="decimal" debounce="700" animated [value]="textoBuscar" (ionChange)="buscar( $event )"></ion-searchbar>
+    <!-- todos los repuestos -->
+    <ion-grid *ngIf="bandera === 0" class="ion-text-uppercase">
+        <ion-row class="tablaHeader">
+            <ion-col size="1">Cod</ion-col>
+            <ion-col size="5">Descripcion</ion-col>
+            <ion-col size="1">Marca</ion-col>
+            <ion-col size="2">Parte</ion-col>
+            <ion-col size="2">Categoria</ion-col>
+            <ion-col size="1">Precio</ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let repuesto of repuestos;let i = index" button (click)="verDetalle( repuesto._id )" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+            <ion-col size="1">{{repuesto.codigo}}</ion-col>
+            <ion-col size="5">{{repuesto.descripcion}}</ion-col>
+            <ion-col size="1">{{repuesto.marca}}</ion-col>
+            <ion-col size="2">{{repuesto.numParte}}</ion-col>
+            <ion-col size="2">{{repuesto.categoria.descripcion}}</ion-col>
+            <ion-col size="1">{{repuesto.precioVenta}}</ion-col>
+        </ion-row>
+        <ion-row class="tablaFooter"></ion-row>
+    </ion-grid>
+
+    <!-- resultado busqueda -->
+    <ion-grid *ngIf="bandera === 1" class="ion-text-uppercase">
+        <ion-row class="tablaHeader">
+            <ion-col size="1">Cod</ion-col>
+            <ion-col size="5">Descripcion</ion-col>
+            <ion-col size="1">Marca</ion-col>
+            <ion-col size="2">Parte</ion-col>
+            <ion-col size="2">Categoria</ion-col>
+            <ion-col size="1">Precio</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let repuesto of buscaRepuestos; let i = index" button (click)="verDetalle( repuesto._id )" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+            <ion-col size="1">{{repuesto.codigo}}</ion-col>
+            <ion-col size="5">{{repuesto.descripcion}}</ion-col>
+            <ion-col size="1">{{repuesto.marca}}</ion-col>
+            <ion-col size="2">{{repuesto.numParte}}</ion-col>
+            <ion-col size="2">{{repuesto.categoria.descripcion}}</ion-col>
+            <ion-col size="1">{{repuesto.precioVenta}}</ion-col>
+        </ion-row>
+        <ion-row class="tablaFooter"></ion-row>
+    </ion-grid>
+
+    <!-- si no hay nada -->
+    <ion-list *ngIf="nada">
+        <ion-grid>
+            <ion-row>
+                <ion-col class="ion-text-center">
+                    <label> No se encontro ningun repuesto 😢</label>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-list>
+    <ion-grid fixed>
+        <ion-row>
+            <ion-col class="ion-text-center">
+                <ion-spinner name="dots" *ngIf="buscando"></ion-spinner>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="bottom20 right20">
+        <ion-fab-button (click)="onClick()" color="success">
+            <ion-icon name="add" size="large"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <!-- <ion-infinite-scroll [disabled]="!habilitado" threshold="100px" (ionInfinite)="siguientes($event)">
+        <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Cargando..."> </ion-infinite-scroll-content>
+    </ion-infinite-scroll> -->
+</ion-content>

@@ -1,23 +1,27 @@
-<ion-menu side="start" menuId="menuPrincipal" contentId="principal" type="push" (ionWillOpen)="onLoad()">
+<ion-menu side="start" menuId="menuPrincipal" contentId="principal" type="push">
     <ion-header>
         <ion-toolbar color="primary">
-            <ion-avatar slot="start" class="">
-                <ion-img src="/assets/avatars/av-8.png"></ion-img>
-            </ion-avatar>
-            <ion-label class="izquierda10 negrita">{{ usuario.nombre }}</ion-label>
-            <br />
-            <ion-label class="izquierda10 tamanoS">{{ usuario.email }}</ion-label>
+            <ion-item color="primary">
+                <ion-label>Menu</ion-label>
+            </ion-item>
         </ion-toolbar>
     </ion-header>
 
     <ion-content>
         <ion-list>
-            <ion-menu-toggle *ngFor="let m of menuOpts | async" onclick="">
-                <ion-item [routerLink]="m.redirectTo">
-                    <ion-icon [name]="m.icon" slot="start"></ion-icon>
+            <ion-menu-toggle *ngFor="let m of menuOpts | async" autoHide="false">
+                <!-- agregar auto-hide si es necesario -->
+                <ion-item [routerLink]="m.redirectTo" lines="full">
+                    <ion-icon [name]="m.icon" slot="start" color="primary"></ion-icon>
                     <ion-label>{{ m.name }}</ion-label>
                 </ion-item>
             </ion-menu-toggle>
         </ion-list>
+        <ion-card class="ion-text-center">
+            <ion-card-header color="secondary">
+                <ion-card-subtitle>{{ date | date: "fullDate" }}</ion-card-subtitle>
+                <ion-card-title> {{ date | date: "HH:mm:ss a" }}</ion-card-title>
+            </ion-card-header>
+        </ion-card>
     </ion-content>
 </ion-menu>

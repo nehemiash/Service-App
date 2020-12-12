@@ -1,0 +1,123 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title class="negrita">Agregar Nuevo Cliente</ion-title>
+        <ion-buttons slot="start">
+            <ion-button slot="end">
+                <ion-icon name="person-add" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="cerrarModal()">
+                <ion-icon slot="end" name="close" size="large" slot="icon-only" shape="round"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-grid class="grid-max-width700" class="ion-no-padding">
+        <form (ngSubmit)="nuevoCliente(fCliente)" #fCliente="ngForm">
+            <ion-row>
+                <ion-col size-lg="8" size-md="8" size-sm="8" size-xs="8">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">Nombre:</ion-label>
+                        <ion-input [(ngModel)]="nuevoCli.nombre" name="nombre" type="name" required class="ion-text-uppercase"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size-lg="4" size-md="4" size-sm="4" size-xs="4">
+                    <ion-item>
+                        <ion-label class="negrita" color="dark">Empresa:</ion-label>
+                        <ion-toggle mode="md" slot="end" [(ngModel)]="nuevoCli.empresa" name="empresa"></ion-toggle>
+                    </ion-item>
+                </ion-col>
+                <ion-col size-lg="12" size-md="12" size-sm="12" size-xs="12">
+                    <ion-item lines="full" *ngIf="nuevoCli.empresa">
+                        <ion-label class="negrita" color="dark">Contacto:</ion-label>
+                        <ion-input [(ngModel)]="nuevoCli.contacto" name="contacto" type="name" class="ion-text-uppercase"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size-lg="5" size-md="5" size-sm="5" size-xs="5">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">Documento:</ion-label>
+                        <ion-input [(ngModel)]="nuevoCli.documento" name="documento" type="text" required class="h1"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size-lg="1" size-md="1" size-sm="1" size-xs="1" button (click)="copiarDoc()">
+                    <ion-item lines="full" class="ontop">
+                        <ion-button fill="clear" shape="round" color="secondary">
+                            <ion-icon slot="icon-only" name="arrow-forward-circle-outline"></ion-icon>
+                        </ion-button>
+                    </ion-item>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size-xs="6">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">RUC:</ion-label>
+                        <ion-input [(ngModel)]="nuevoCli.ruc" name="ruc" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size-lg="12" size-md="12" size-sm="12" size-xs="12">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">Email:</ion-label>
+                        <ion-input [(ngModel)]="nuevoCli.email" name="email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size-lg="5" size-md="5" size-sm="5" size-xs="5">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">Telefono:</ion-label>
+                        <ion-input [(ngModel)]="nuevoCli.telefono" name="telefono" type="tel"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size-lg="1" size-md="1" size-sm="1" size-xs="1" button (click)="copiarTel()">
+                    <ion-item lines="full" class="ontop">
+                        <ion-button fill="clear" shape="round" color="secondary">
+                            <ion-icon slot="icon-only" name="arrow-forward-circle-outline"></ion-icon>
+                        </ion-button>
+                    </ion-item>
+                </ion-col>
+                <ion-col size-lg="5" size-md="5" size-sm="5" size-xs="5">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">Celular:</ion-label>
+                        <ion-input [(ngModel)]="nuevoCli.celular" name="celular" type="tel" required></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size-lg="12" size-md="12" size-sm="12" size-xs="12">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">Direccion:</ion-label>
+                        <ion-textarea [(ngModel)]="nuevoCli.direccion" name="direccion" type="address-line1" required class="ion-text-uppercase"></ion-textarea>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="12">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">Ciudad:</ion-label>
+                        <ion-input [(ngModel)]="nuevoCli.ciudad" name="ciudad" type="address-line2" required class="ion-text-uppercase"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label class="negrita" color="dark">Pais:</ion-label>
+                        <ion-select id="paises" name="pais" [(ngModel)]="nuevoCli.pais" value="Paraguay" interface="action-sheet" required class="ion-text-uppercase">
+                            <ion-select-option value="Argentina" class="ion-text-uppercase">🇦🇷 Argentina</ion-select-option>
+                            <ion-select-option value="Brasil" class="ion-text-uppercase">🇧🇷 Brasil</ion-select-option>
+                            <ion-select-option value="Paraguay" class="ion-text-uppercase">🇵🇾 Paraguay</ion-select-option>
+                            <ion-select-option value="">... Seleccione otro pais ...</ion-select-option>
+                            <ion-select-option value="{{ pais.name }}" *ngFor="let pais of paises | async" class="ion-text-uppercase">{{ pais.name }}
+                            </ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col class="ion-text-center top50">
+                    <ion-button type="submit" color="success" shape="round" [disabled]="fCliente.invalid">
+                        <ion-label>GUARDAR</ion-label>
+                    </ion-button>
+                    <ion-button (click)="limpiar()" color="warning" shape="round">
+                        <ion-label>LIMPIAR</ion-label>
+                    </ion-button>
+                    <ion-button (click)="cerrarModal()" color="danger" shape="round">
+                        <ion-label>CANCELAR</ion-label>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </form>
+    </ion-grid>
+</ion-content>
