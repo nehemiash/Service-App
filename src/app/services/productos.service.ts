@@ -78,7 +78,7 @@ export class ProductosService {
           if (resp['err']) {
             resolve(false);
           } else {
-            resolve(true);
+            resolve([true, resp.productoDB._id]);
           }
         });
 

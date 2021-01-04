@@ -13,8 +13,6 @@ export class LoginPage implements AfterViewInit {
 
   @ViewChild('slidePrincipal') slides: IonSlides;
 
-  public alias = '';
-
   loginUser = {
     email: 'nehemiashp@gmail.com',
     password: '1234'
@@ -61,7 +59,7 @@ export class LoginPage implements AfterViewInit {
     const valido = await this.usuarioService.login(this.loginUser.email, this.loginUser.password);
 
     if (valido) {
-      this.navCtrl.navigateRoot('main', { animated: true });
+      this.navCtrl.navigateRoot('main');
 
     } else {
       this.uiService.mostrarAlerta('Error', 'El usuario o contraseña no son correctos.');
@@ -76,7 +74,7 @@ export class LoginPage implements AfterViewInit {
     const valido = await this.usuarioService.registro(this.registerUser);
 
     if (valido) {
-      this.navCtrl.navigateRoot('main', { animated: true });
+      this.navCtrl.navigateRoot('main');
     } else {
       this.uiService.mostrarAlerta('error', 'El correo electronico ya existe');
     }

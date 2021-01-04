@@ -1,3 +1,5 @@
+import { Usuario } from "./interfaces";
+
 export interface Categorias {
     ok?: boolean;
     categorias?: Categoria[];
@@ -36,4 +38,18 @@ export interface CategoriaDetalle {
     _id?: string;
     descripcion?: string;
     tipo?: string;
+}
+
+export interface Notas {
+    ok: boolean;
+    nota: Nota;
+}
+
+export interface Nota {
+    estado?: boolean;
+    _id?: string;
+    descripcion?: string;
+    usuario?: Usuario;
+    tipo?: string;
+    creada?: string;
 }

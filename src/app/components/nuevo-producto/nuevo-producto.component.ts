@@ -49,6 +49,7 @@ export class NuevoProductoComponent implements OnInit {
 
   async ngOnInit() {
     await this.microService.cargarToken();
+    await this.productosService.cargarToken();
     this.obtenerCategorias();
     this.obtenerMarcas();
   }
@@ -116,7 +117,19 @@ export class NuevoProductoComponent implements OnInit {
 
     if (valido) {
       this.uiService.mostrarToast('Se ha creado un nuevo producto', 'success');
-      this.modalCtrl.dismiss();
+
+      this.productosService.getProductoDetalle(valido['1']).subscribe(resp => {
+
+        this.modalCtrl.dismiss({
+          _id: resp.productoDB._id,
+          descripcion: resp.productoDB.descripcion,
+          codigo: resp.productoDB.codigo,
+          marca: resp.productoDB.marca,
+          categoria: resp.productoDB.categoria,
+        });
+      });
+
+
     } else {
       this.uiService.mostrarToast('Hubo un problema, intenta nuevamente', 'danger');
     }

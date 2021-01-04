@@ -12,7 +12,11 @@ import { ProductoDetalleComponent } from './producto-detalle/producto-detalle.co
 import { NuevoRepuestoComponent } from './nuevo-repuesto/nuevo-repuesto.component';
 import { RespuestoDetalleComponent } from './respuesto-detalle/respuesto-detalle.component';
 import { NuevaCategoriaComponent } from './nueva-categoria/nueva-categoria.component';
-import { CategoriaDetalleComponent } from './categoria-detalle/categoria-detalle.component'
+import { CategoriaDetalleComponent } from './categoria-detalle/categoria-detalle.component';
+import { ClienteBuscarComponent } from './cliente-buscar/cliente-buscar.component';
+import { ProductoBuscarComponent } from './producto-buscar/producto-buscar.component';
+import { NuevaNotaComponent } from './nueva-nota/nueva-nota.component';
+
 @NgModule({
   entryComponents: [
     ClienteDetalleComponent
@@ -28,6 +32,9 @@ import { CategoriaDetalleComponent } from './categoria-detalle/categoria-detalle
     RespuestoDetalleComponent,
     NuevaCategoriaComponent,
     CategoriaDetalleComponent,
+    ClienteBuscarComponent,
+    ProductoBuscarComponent,
+    NuevaNotaComponent,
   ],
   exports: [
     HeaderComponent,
@@ -40,6 +47,9 @@ import { CategoriaDetalleComponent } from './categoria-detalle/categoria-detalle
     RespuestoDetalleComponent,
     NuevaCategoriaComponent,
     CategoriaDetalleComponent,
+    ClienteBuscarComponent,
+    ProductoBuscarComponent,
+    NuevaNotaComponent,
   ],
   imports: [
     CommonModule,

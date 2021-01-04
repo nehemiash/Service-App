@@ -1,0 +1,294 @@
+<app-header titulo="Nueva Orden"></app-header>
+
+<ion-content class="ion-align-items-center">
+    <form (ngSubmit)="nuevaOrden(fOrden)" #fOrden="ngForm">
+        <ion-grid class="ion-no-padding">
+            <ion-row>
+                <ion-col size="6">
+                    <ion-row>
+                        <ion-col size="12">
+                            <ion-item color="secondary" lines="none">
+                                <ion-icon name="person" slot="start"></ion-icon>
+                                <ion-label class="titulo">CLIENTE</ion-label>
+                                <ion-button (click)="nuevoCli()" color="secondary">
+                                    <ion-icon slot="icon-only" name="person-add"></ion-icon>
+                                </ion-button>
+                                <ion-button (click)="buscarCli()" color="secondary">
+                                    <ion-icon slot="icon-only" name="search"></ion-icon>
+                                </ion-button>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="12">
+                            <ion-item lines="full">
+                                <ion-label class="negrita" color="dark">NOMBRE:</ion-label>
+                                <ion-input name="nombre" type="text" [(ngModel)]="orden.cliente.nombre" required readonly class="ion-text-uppercase"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="6">
+                            <ion-item lines="full">
+                                <ion-label class="negrita" color="dark">DOCUMENTO:</ion-label>
+                                <ion-input name="documento" type="text" [(ngModel)]="orden.cliente.documento" required readonly class="ion-text-uppercase"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="6">
+                            <ion-item lines="full">
+                                <ion-label class="negrita" color="dark">COD:</ion-label>
+                                <ion-input name="codigocli" type="text" [(ngModel)]="orden.cliente.codigo" required readonly class="ion-text-uppercase"></ion-input>
+                            </ion-item>
+                        </ion-col>
+
+                        <ion-col size="5">
+                            <ion-item lines="full">
+                                <ion-label class="negrita" color="dark">TELEFONO:</ion-label>
+                                <ion-input name="telefono" type="tel" [(ngModel)]="orden.cliente.telefono" required readonly class="ion-text-uppercase"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="7">
+                            <ion-item lines="full">
+                                <ion-label class="negrita" color="dark">EMAIL:</ion-label>
+                                <ion-input name="email" type="email" [(ngModel)]="orden.cliente.email" required readonly readonly class="ion-text-uppercase"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="12">
+                            <ion-item lines="full">
+                                <ion-label class="negrita" color="dark">DIRECCION:</ion-label>
+                                <ion-textarea rows="3" name="direccion" type="text" [(ngModel)]="orden.cliente.direccion" required readonly class="ion-text-uppercase"></ion-textarea>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+                <ion-col size="5" class="borde">
+                    <ion-row>
+                        <ion-col size="12">
+                            <ion-item color="secondary" lines="none">
+                                <ion-icon name="desktop" slot="start"></ion-icon>
+                                <ion-label class="titulo">DISPOSITIVO</ion-label>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="12">
+                            <ion-item lines="full">
+                                <ion-label class="negrita" color="dark">SERIE:</ion-label>
+                                <ion-input name="srie" type="text" [(ngModel)]="orden.serie1" required class="ion-text-uppercase"></ion-input>
+                            </ion-item>
+                        </ion-col>
+
+                        <ion-col size="9">
+                            <ion-item lines="full">
+                                <ion-label class="negrita" color="dark">PRODUCTO:</ion-label>
+                                <ion-input name="producto" type="text" [(ngModel)]="orden.producto.descripcion" readonly required class="ion-text-uppercase"></ion-input>
+                            </ion-item>
+                        </ion-col>
+
+                        <ion-col size="3">
+                            <ion-item lines="full">
+                                <ion-label class="negrita" color="dark">COD:</ion-label>
+                                <ion-input name="codigoprod" type="text" [(ngModel)]="orden.producto.codigo" readonly required class="ion-text-uppercase"></ion-input>
+                            </ion-item>
+                        </ion-col>
+
+                        <ion-col size="6">
+                            <ion-item lines="full">
+                                <ion-label class="negrita" color="dark">CATEGORIA:</ion-label>
+                                <ion-input name="categoria" type="text" [(ngModel)]="orden.producto.categoria.descripcion" readonly required class="ion-text-uppercase"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="6">
+                            <ion-item lines="full">
+                                <ion-label class="negrita" color="dark">MARCA:</ion-label>
+                                <ion-input name="marca" type="text" [(ngModel)]="orden.producto.marca" readonly required class="ion-text-uppercase"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="6">
+                            <ion-item lines="none">
+                                <ion-label class="negrita" color="dark">FECHA COMPRA:</ion-label>
+                                <ion-datetime [pickerOptions]="customPickerOptions" [value]="fechaActual" min="2015" displayFormat="DD/MM/YYYY" cus></ion-datetime>
+                            </ion-item>
+                        </ion-col>
+
+                        <ion-col size="6">
+                            <ion-item lines="none">
+                                <ion-label class="negrita" color="dark">COBERTURA:</ion-label>
+                                <ion-select placeholder="Seleccionar" value="oow" interface="alert" okText="Ok" cancelText="Cancelar">
+                                    <ion-select-option value="iw">EN GARANTIA</ion-select-option>
+                                    <ion-select-option value="oow">FUERA DE GARANTIA</ion-select-option>
+                                    <ion-select-option value="qp">PROGRAMA DE CALIDAD</ion-select-option>
+                                    <ion-select-option value="cs">CODIGO DE SATISFACCION</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+                <ion-col size="1">
+                    <ion-col size="12">
+                        <ion-item lines="none" color="secondary">
+                            <ion-button (click)="nuevoPro()" color="secondary">
+                                <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+                            </ion-button>
+                            <ion-button (click)="buscarPro()" color="secondary">
+                                <ion-icon slot="icon-only" name="search"></ion-icon>
+                            </ion-button>
+                        </ion-item>
+                    </ion-col>
+                    <ion-img src="/../../../assets/img/nodisponible.png"></ion-img>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid class="ion-no-padding">
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item color="secondary" lines="none">
+                        <ion-icon name="construct" slot="start"></ion-icon>
+                        <ion-label class="titulo">REPARACION</ion-label>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">UBICACION:</ion-label>
+                        <ion-input readonly name="ubicacion" type="text" required class="ion-text-uppercase">{{orden.ubicacion}}</ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">SITUACION:</ion-label>
+                        <ion-input readonly name="situacion" type="text" required class="ion-text-uppercase">{{orden.situacion}}</ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">RECIBIDO POR:</ion-label>
+                        <ion-input readonly name="recibido" type="text" required class="ion-text-uppercase">{{usuarioc.nombre}}</ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">ASPECTO:</ion-label>
+                        <ion-textarea rows="2" name="aspecto" type="text" [(ngModel)]="orden.aspecto" required class="ion-text-uppercase"></ion-textarea>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">ACCESORIOS:</ion-label>
+                        <ion-textarea rows="2" name="accesorios" type="text" [(ngModel)]="orden.accesorios" required class="ion-text-uppercase"></ion-textarea>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="12">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">PROBLEMA NOTIFICADO:</ion-label>
+                        <ion-input name="problema" type="text" required class="ion-text-uppercase"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">NOTAS DEL CLIENTE:</ion-label>
+                        <ion-textarea rows="3" name="notascliente" type="text" [(ngModel)]="orden.notaCliente" required class="ion-text-uppercase"></ion-textarea>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item lines="full">
+                        <ion-label class="negrita" color="dark">OBSERVACIONES:</ion-label>
+                        <ion-textarea rows="3" name="obs" type="text" [(ngModel)]="orden.obs" required class="ion-text-uppercase"></ion-textarea>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid class="ion-no-padding">
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item color="secondary" lines="none">
+                        <ion-icon name="cash" slot="start"></ion-icon>
+                        <ion-label class="titulo">PRESUPUESTO</ion-label>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col size="6">
+                    <ion-col size="5">
+                        <ion-item lines="full">
+                            <ion-label class="negrita" color="dark">APROBADO:</ion-label>
+                            <ion-toggle mode="md" slot="end" [(ngModel)]="orden.aprobado" (ionChange)="aprobadoSw(orden.aprobado)" name="aprobado"></ion-toggle>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="3">
+                        <ion-item lines="none">
+                            <ion-label class="negrita" color="dark">PARTES</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="9" lines="full">
+                        <ion-row>
+                            <ion-col size="12">
+                                <ion-item lines="full">
+                                    <ion-label>Pieza 1</ion-label>
+                                    <ion-label class="left">$ 5.00</ion-label>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col size="12">
+                                <ion-item lines="full" class="partes">
+                                    <ion-label>Pieza 2</ion-label>
+                                    <ion-label class="left partes">$ 10.00</ion-label>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col size="12">
+                                <ion-item lines="full" class="partes">
+                                    <ion-label>Pieza 3</ion-label>
+                                    <ion-label class="left partes">$ 20.00</ion-label>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                </ion-col>
+
+                <ion-col size="6" class="borde">
+                    <ion-col size="12">
+                        <ion-col size="6">
+                            <ion-item lines="full">
+                                <ion-label class="negrita" color="dark">VALOR PRE-APROBADO:</ion-label>
+                                <ion-input class="left" placeholder="$ 0.00" name="preapro" [ngModel]="orden.valorPreapro  | currency:'$ '" (ionBlur)="updatePrice($event, 'preapro')">
+                                </ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-item lines="full">
+                            <ion-label class="negrita" color="dark">TOTAL REPUESTOS:</ion-label>
+                            <ion-input class="left" placeholder="$ 0.00" name="repuestos" [ngModel]="orden.valorpcs | currency:'$ '" (ionBlur)="updatePrice($event, 'repuestos')"></ion-input>
+                        </ion-item>
+                        <ion-item lines="full">
+                            <ion-label class="negrita" color="dark">MANO DE OBRA</ion-label>
+                            <ion-input class="left" placeholder="$ 0.00" name="mo" [ngModel]="orden.valorMo | currency:'$ '" (ionBlur)="updatePrice($event, 'mo')"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12" *ngIf="botFlete">
+                        <ion-item lines="full">
+                            <ion-label class="negrita" color="dark">FLETE:</ion-label>
+                            <ion-input class="left" placeholder="$ 0.00" name="flete" [ngModel]="orden.costoFlete | currency:'$ '" (ionBlur)="updatePrice($event, 'flete')"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12" *ngIf="botDesc">
+                        <ion-item lines="full">
+                            <ion-label class="negrita" color="dark">DESCUENTO:</ion-label>
+                            <ion-input class="left" placeholder="$ 0.00" name="descuento" [ngModel]="orden.descuento | currency:'$ '" (ionBlur)="updatePrice($event, 'descuento')"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-item lines="full">
+                            <ion-label class="negrita" color="dark">VALOR TOTAL:</ion-label>
+                            <ion-input class="left" placeholder="$ 0.00" name="total" [ngModel]="orden.valorTotal | currency:'$ '" (ionBlur)="updatePriceTotal()" readonly></ion-input>
+                        </ion-item>
+                        <ion-col size="12">
+                            <ion-item lines="none">
+                                <ion-button (click)="descuentoON()" color="secondary"> DESCUENTO </ion-button>
+                                <ion-button (click)="fleteON()" color="secondary"> FLETE </ion-button>
+                            </ion-item>
+                        </ion-col>
+                    </ion-col>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+    <ion-grid fixed>
+        <ion-row>
+            <ion-col size="12">
+                <ion-button (click)="verObjeto()" color="secondary">Ver Objeto</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

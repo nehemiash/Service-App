@@ -30,19 +30,30 @@ const routes: Routes = [
   },
   {
     path: 'productos',
-    loadChildren: () => import('./pages/productos/productos.module').then( m => m.ProductosPageModule)
+    loadChildren: () => import('./pages/productos/productos.module').then(m => m.ProductosPageModule),
+    canLoad: [UsuarioGuard]
   },
   {
     path: 'categorias',
-    loadChildren: () => import('./pages/categorias/categorias.module').then( m => m.CategoriasPageModule)
+    loadChildren: () => import('./pages/categorias/categorias.module').then(m => m.CategoriasPageModule),
+    canLoad: [UsuarioGuard]
+
   },
   {
     path: 'ordenes',
-    loadChildren: () => import('./pages/ordenes/ordenes.module').then( m => m.OrdenesPageModule)
+    loadChildren: () => import('./pages/ordenes/ordenes.module').then(m => m.OrdenesPageModule),
+    canLoad: [UsuarioGuard]
   },
   {
     path: 'repuestos',
-    loadChildren: () => import('./pages/repuestos/repuestos.module').then( m => m.RepuestosPageModule)
+    loadChildren: () => import('./pages/repuestos/repuestos.module').then(m => m.RepuestosPageModule),
+    canLoad: [UsuarioGuard]
+  },
+  {
+    path: 'crear-orden',
+    loadChildren: () => import('./pages/crear-orden/crear-orden.module').then(m => m.CrearOrdenPageModule),
+    canLoad: [UsuarioGuard]
+
   },
 ];
 

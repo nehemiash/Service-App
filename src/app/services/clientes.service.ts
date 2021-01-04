@@ -50,6 +50,16 @@ export class ClientesService {
 
   }
 
+  getClienteDoc(doc: string) {
+
+    const headers = new HttpHeaders({
+      token: this.token
+    });
+
+    return this.http.get<ClientesDetalle>(`${URL}/cliente/mostrardoc/${doc}`, { headers });
+
+  }
+
   paginaCero() {
     this.paginaCli = 0;
   }

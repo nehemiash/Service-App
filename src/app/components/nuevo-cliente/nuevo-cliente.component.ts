@@ -31,6 +31,7 @@ export class NuevoClienteComponent implements OnInit {
     celular: '0986223340',
   };
 
+  clienteSel: ClienteDetalle;
 
 
   constructor(
@@ -42,10 +43,11 @@ export class NuevoClienteComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    this.clientesService.cargarToken();
     this.paises = this.dataService.getPaises();
   }
 
-  cerrarModal() {
+  async cerrarModal() {
     this.modalCtrl.dismiss();
   }
 
@@ -64,9 +66,28 @@ export class NuevoClienteComponent implements OnInit {
 
     const valido = await this.clientesService.nuevoCliente(this.nuevoCli);
 
+
     if (valido) {
       this.uiService.mostrarToast(`Se ha agregado "${this.nuevoCli.nombre}" a los  clientes`, 'success');
-      this.modalCtrl.dismiss();
+
+      const doc = this.nuevoCli.documento;
+
+      this.clientesService.getClienteDoc(doc)
+        .subscribe(resp => {
+
+          this.clienteSel = resp.cliente['0'];
+
+          this.modalCtrl.dismiss({
+            _id: this.clienteSel._id,
+            nombre: this.clienteSel.nombre,
+            codigo: this.clienteSel.codigo,
+            telefono: this.clienteSel.telefono,
+            direccion: this.clienteSel.direccion,
+            email: this.clienteSel.email,
+            documento: this.clienteSel.documento,
+          });
+        });
+
     } else {
       this.uiService.mostrarToast(`El documento "${this.nuevoCli.documento}" ya ha sido registrado, prueba con otro`, 'danger');
     }

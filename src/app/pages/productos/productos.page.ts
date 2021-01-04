@@ -115,10 +115,6 @@ export class ProductosPage implements OnInit {
     modal.present();
   }
 
-  onClick2() {
-    console.log(window.innerWidth);
-  }
-
 
 }
 
