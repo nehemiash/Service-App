@@ -64,6 +64,7 @@ export class CategoriasPage implements OnInit {
   async onClick() {
     const modal = await this.modalCtrl.create({
       component: NuevaCategoriaComponent,
+      cssClass: 'smallscreen',
     });
 
     modal.present();
@@ -76,6 +77,7 @@ export class CategoriasPage implements OnInit {
 
     const modal = await this.modalCtrl.create({
       component: CategoriaDetalleComponent,
+      cssClass: 'smallscreen',
       componentProps: {
         id
       }
@@ -87,7 +89,7 @@ export class CategoriasPage implements OnInit {
     });
   }
 
-  async borrarCat(id: string, nombre: string, item: any) {
+  async borrarCat(id: string, nombre: string, item?: any) {
 
     nombre = nombre.toLocaleUpperCase();
 

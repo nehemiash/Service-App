@@ -1,0 +1,41 @@
+.mainSlide,
+.mainSlide ion-slides {
+    width: 80%;
+    height: 100% !important;
+    font-size: smaller !important;
+}
+
+img {
+    width: 120px;
+}
+
+.tablaAncho {
+    width: 50% !important;
+}
+
+ion-select::part(placeholder),
+ion-select::part(text) {
+    flex: 0 0 auto;
+}
+
+ion-select {
+    max-width: 100% !important;
+}
+
+ion-img {
+    border-radius: 10px !important;
+}
+
+.left {
+    text-align: end !important;
+    font-size: medium !important;
+}
+
+.partes {
+    margin-bottom: -6px !important;
+    margin-top: -6px !important;
+}
+
+.borde {
+    border-left: 1px solid #4aa3a7;
+}

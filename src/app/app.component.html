@@ -3,9 +3,7 @@
         <ion-menu side="start" menuId="menuPrincipal" contentId="principal" type="push">
             <ion-header>
                 <ion-toolbar color="primary">
-                    <ion-item color="primary">
-                        <ion-label>Menu</ion-label>
-                    </ion-item>
+                    <ion-title>MENU</ion-title>
                 </ion-toolbar>
             </ion-header>
 
@@ -15,14 +13,14 @@
                         <!-- agregar auto-hide si es necesario -->
                         <ion-item [routerLink]="m.redirectTo" lines="full">
                             <ion-icon [name]="m.icon" slot="start" color="primary"></ion-icon>
-                            <ion-label>{{ m.name }}</ion-label>
+                            <ion-label>{{ m.name | uppercase }}</ion-label>
                         </ion-item>
                     </ion-menu-toggle>
                 </ion-list>
                 <ion-card class="ion-text-center">
                     <ion-card-header color="secondary">
                         <ion-card-subtitle>{{ date | date: "EEEE d MMMM y" }}</ion-card-subtitle>
-                        <ion-card-title> {{ date | date: "HH:mm:ss a" }}</ion-card-title>
+                        <ion-card-title> {{ date | date: "HH:mm a" }}</ion-card-title>
                     </ion-card-header>
                 </ion-card>
             </ion-content>

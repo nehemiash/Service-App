@@ -16,6 +16,8 @@ import { CategoriaDetalleComponent } from './categoria-detalle/categoria-detalle
 import { ClienteBuscarComponent } from './cliente-buscar/cliente-buscar.component';
 import { ProductoBuscarComponent } from './producto-buscar/producto-buscar.component';
 import { NuevaNotaComponent } from './nueva-nota/nueva-nota.component';
+import { ProblemasComponent } from './problemas/problemas.component';
+import { OrdenDetalleComponent } from './orden-detalle/orden-detalle.component';
 
 @NgModule({
   entryComponents: [
@@ -35,6 +37,8 @@ import { NuevaNotaComponent } from './nueva-nota/nueva-nota.component';
     ClienteBuscarComponent,
     ProductoBuscarComponent,
     NuevaNotaComponent,
+    ProblemasComponent,
+    OrdenDetalleComponent,
   ],
   exports: [
     HeaderComponent,
@@ -50,6 +54,8 @@ import { NuevaNotaComponent } from './nueva-nota/nueva-nota.component';
     ClienteBuscarComponent,
     ProductoBuscarComponent,
     NuevaNotaComponent,
+    ProblemasComponent,
+    OrdenDetalleComponent,
   ],
   imports: [
     CommonModule,

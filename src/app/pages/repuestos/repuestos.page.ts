@@ -39,6 +39,7 @@ export class RepuestosPage implements OnInit {
   async verDetalle(id: string) {
     const modal = await this.modalCtrl.create({
       component: RespuestoDetalleComponent,
+      cssClass: 'smallscreen',
       componentProps: {
         id
       }
@@ -109,6 +110,7 @@ export class RepuestosPage implements OnInit {
   async onClick() {
     const modal = await this.modalCtrl.create({
       component: NuevoRepuestoComponent,
+      cssClass: 'smallscreen',
     });
 
     modal.present();

@@ -13,6 +13,7 @@ import { NuevoClienteComponent } from '../../components/nuevo-cliente/nuevo-clie
 export class ClientesPage implements OnInit {
 
   clientes: Cliente[] = [];
+  limite = 20;
   textoBuscar = '';
   buscaClientes: Cliente[] = [];
   bandera = 0;
@@ -20,6 +21,10 @@ export class ClientesPage implements OnInit {
   nada = false;
   habilitado = true;
   edit = false;
+  pagina = 1;
+  total_pag;
+  sort = 'nombre';
+
 
   constructor(
     private clienteService: ClientesService,
@@ -48,22 +53,36 @@ export class ClientesPage implements OnInit {
     });
   }
 
-  recargar(event) {
-
-    this.siguientes(event, true);
+  recargar(event?) {
+    this.siguientes('ninguna', event, true);
+    console.log(this.limite);
 
   }
 
-  siguientes(event?, pull: boolean = false) {
+  cambioFiltro(event?) {
+    this.limite = event.detail.value;
+    this.siguientes('inicio');
+  }
+
+  ordenarPor(event?) {
+    this.sort = event.detail.value;
+    this.recargar();
+  }
+
+  siguientes(direccion?: string, event?, pull: boolean = false) {
 
     if (pull) {
       this.habilitado = true;
       this.clientes = [];
     }
 
-    this.clienteService.getClientes(pull)
+    this.clientes = [];
+    this.clienteService.getClientes(pull, direccion, this.limite, this.sort)
       .subscribe(resp => {
         this.clientes.push(...resp.clientes);
+
+        this.pagina = resp.pagina;
+        this.total_pag = resp.total_paginas;
 
         if (event) {
           event.target.complete();
@@ -122,6 +141,7 @@ export class ClientesPage implements OnInit {
   onClick2() {
     console.log(window.innerWidth);
   }
+
 
 
 

@@ -61,7 +61,7 @@ export class CrearOrdenPage implements OnInit {
     tecnico: '5fa9ba49ebe0d66a4039439f',
     usuario: {},
     situacion: 'En Recepción',
-    valorpcs: 0,
+    valorPcs: 0,
     valorMo: 0,
     descuento: 0,
     costoFlete: 0,
@@ -144,7 +144,7 @@ export class CrearOrdenPage implements OnInit {
         this.updatePriceTotal();
         break;
       case ('repuestos'):
-        this.orden.valorpcs = formattedValue;
+        this.orden.valorPcs = formattedValue;
         this.updatePriceTotal();
         break;
       case 'mo':
@@ -166,7 +166,7 @@ export class CrearOrdenPage implements OnInit {
 
   updatePriceTotal() {
 
-    const value = (this.orden.valorMo + this.orden.costoFlete + this.orden.valorpcs + this.orden.descuento).toString();
+    const value = (this.orden.valorMo + this.orden.costoFlete + this.orden.valorPcs + this.orden.descuento).toString();
 
     const value2 = value.replace(/,/g, '.');
 
@@ -270,6 +270,4 @@ export class CrearOrdenPage implements OnInit {
 
 
 }
-
-
 

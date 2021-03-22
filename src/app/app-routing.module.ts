@@ -55,6 +55,11 @@ const routes: Routes = [
     canLoad: [UsuarioGuard]
 
   },
+  {
+    path: 'crear-orden-paso',
+    loadChildren: () => import('./pages/crear-orden-paso/crear-orden-paso.module').then(m => m.CrearOrdenPasoPageModule)
+  },
+
 ];
 
 @NgModule({

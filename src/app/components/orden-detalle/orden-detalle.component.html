@@ -1,0 +1,215 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title class="negrita">ORDEN DE SERVICIO</ion-title>
+        <ion-buttons slot="start">
+            <ion-button slot="end">
+                <ion-icon name="construct" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="cerrarModal()" shape="round">
+                <ion-icon name="close" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-align-items-center fondo ion-padding">
+    <ion-grid class="ion-no-padding">
+        <ion-row>
+            <ion-col size="2" class="ion-no-padding">
+                <ion-img src="../../../assets/img/logo.jpg"></ion-img>
+            </ion-col>
+            <ion-col size="10" class="ion-text-right">
+                <ion-label>
+                    <h1><b>CELLSHOP - GRUPO CELL MOTION S.A.</b></h1>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <b>SERVICIO TECNICO AUTORIZADO APPLE</b><br /> Av. Abay e/ Mons. Rodriguez y Adrian Jara<br /> Tel: +595 61 501 474 int. 1239<br /> Cel: +595 982 571611<br /> www.cellshop.com
+                    </h2>
+                </ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12" class="ion-text-center tituloOrden"> ORDEN DE SERVICIO </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="9" class="ion-text-left">
+                <ion-label>
+                    <h2><b>CLIENTE:</b></h2>
+                    <h1>
+                        <b>{{ orden.cliente.nombre | uppercase }}</b>
+                    </h1>
+                    <h2>
+                        {{ orden.cliente.direccion | uppercase }} <br />{{ orden.cliente.ciudad | uppercase }} - {{ orden.cliente.pais | uppercase }} <br />TEL:{{ orden.cliente.telefono }}, CEL: {{ orden.cliente.celular }} <br /> {{ orden.cliente.email
+                        }}
+                    </h2>
+                </ion-label>
+            </ion-col>
+            <ion-col size="3" class="ion-text-right">
+                <ion-label>
+                    <h1>
+                        <b>ORDEN N° {{ orden.numero }}</b>
+                    </h1>
+                    <h2>
+                        Emisión: {{ orden.creado | date: "dd/MM/y HH:mm" }}<br /> Recibido por: {{ orden.usuario.nombre }}
+                    </h2>
+                </ion-label>
+            </ion-col>
+        </ion-row>
+        <br />
+        <ion-row>
+            <ion-col size="12">
+                <h1><b>INFORMACION DEL EQUIPO</b></h1>
+                <ion-item lines="full"> </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="2" class="filaGris ion-text-right">
+                <h4><b>SERIE:</b></h4>
+            </ion-col>
+            <ion-col size="4" class="filaBlanco">
+                <h4>{{ orden.serie1 }}</h4>
+            </ion-col>
+            <ion-col *ngIf="orden.serie2" size="2" class="filaGris ion-text-right">
+                <h4><b>SUSTITUIDO: </b></h4>
+            </ion-col>
+            <ion-col size="4" class="filaBlanco">
+                <h4>{{ orden.serie2 }}</h4>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="2" class="filaGris ion-text-right">
+                <h4><b>PRODUCTO: </b></h4>
+            </ion-col>
+            <ion-col size="10" class="filaGrisClaro">
+                <h4>{{ orden.producto.codigo }}-{{ orden.producto.descripcion | uppercase }}</h4>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="2" class="filaGris ion-text-right">
+                <h4><b>MODELO: </b></h4>
+            </ion-col>
+            <ion-col size="4" class="filaBlanco">
+                <h4>{{ orden.producto.modelo | uppercase }}</h4>
+            </ion-col>
+            <ion-col size="2" class="filaGris ion-text-right">
+                <h4><b>MARCA: </b></h4>
+            </ion-col>
+            <ion-col size="4" class="filaBlanco">
+                <h4>{{ orden.producto.marca | uppercase }}</h4>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="2" class="filaGris ion-text-right">
+                <h4><b>COBERTURA: </b></h4>
+            </ion-col>
+            <ion-col size="4" class="filaGrisClaro">
+                <h4>{{ orden.cobertura | uppercase }}</h4>
+            </ion-col>
+
+            <ion-col size="2" class="filaGris ion-text-right">
+                <h4><b>FEC. COMPRA: </b></h4>
+            </ion-col>
+            <ion-col size="4" class="filaGrisClaro">
+                <h4>{{ orden.fechaCompra | date: "dd/MM/y" }}</h4>
+            </ion-col>
+            <ion-col size="2" class="filaGris ion-text-right">
+                <h4><b>ASPECTO: </b></h4>
+            </ion-col>
+            <ion-col size="10" class="filaBlanco">
+                <h4>{{ orden.aspecto | uppercase }}</h4>
+            </ion-col>
+            <ion-col size="2" class="filaGris ion-text-right">
+                <h4><b>ACCESORIOS: </b></h4>
+            </ion-col>
+            <ion-col size="10" class="filaBlanco">
+                <h4>{{ orden.accesorios | uppercase }}</h4>
+            </ion-col>
+        </ion-row>
+        <br />
+        <ion-row>
+            <ion-col size="12">
+                <h1><b>INFORMACION DE LA REPARACION</b></h1>
+                <ion-item lines="full"> </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="2" class="filaGris ion-text-right">
+                <h4><b>SITUACION: </b></h4>
+            </ion-col>
+            <ion-col size="4" class="filaBlanco">
+                <h4>{{ orden.situacion | uppercase }}</h4>
+            </ion-col>
+
+            <ion-col size="2" class="filaGris ion-text-right">
+                <h4><b>TECNICO: </b></h4>
+            </ion-col>
+            <ion-col size="4" class="filaBlanco">
+                <h4>{{ orden.tecnico.nombre | uppercase }}</h4>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="2" class="filaGris ion-text-right">
+                <h4><b>PROBLEMA:</b></h4>
+            </ion-col>
+            <ion-col size="10" class="filaGrisClaro">
+                <h4>{{ orden.problema1[0].descripcion }}</h4>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="2" class="filaGris ion-text-right">
+                <h4><b>NOTAS DEL CLIENTE: </b></h4>
+            </ion-col>
+            <ion-col size="10" class="filaBlanco">
+                <h4>{{ orden.notaCliente }}</h4>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="2" class="filaGris ion-text-right">
+                <h4><b>OBSERVACIONES: </b></h4>
+            </ion-col>
+            <ion-col size="10" class="filaGrisClaro">
+                <h4>{{ orden.obs }}</h4>
+            </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="orden.valorPcs">
+            <ion-col size="6" class="filaBlanco ion-text-right"> </ion-col>
+            <ion-col size="3" class="filaBlanco ion-text-right">
+                <h4><b>Total Partes: </b></h4>
+            </ion-col>
+            <ion-col size="3" class="filaBlanco" class="ion-text-right">
+                <h4>{{ orden.valorPcs | currency: "$" }}</h4>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="6" class="filaBlanco ion-text-right"> </ion-col>
+            <ion-col size="3" class="filaBlanco ion-text-right">
+                <h4><b>Mano de Obra: </b></h4>
+            </ion-col>
+            <ion-col size="3" class="filaBlanco" class="ion-text-right">
+                <h4>{{ orden.valorMo | currency: "$" }}</h4>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="orden.descuento">
+            <ion-col size="6" class="filaBlanco ion-text-right"> </ion-col>
+            <ion-col size="3" class="filaBlanco ion-text-right">
+                <h4><b>Descuento: </b></h4>
+            </ion-col>
+            <ion-col size="3" class="filaBlanco" class="ion-text-right">
+                <h4>{{ orden.descuento | currency: "$" }}</h4>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="6" class="filaBlanco ion-text-right"> </ion-col>
+            <ion-col size="3" class="filaBlanco ion-text-right">
+                <h4><b>Total Servicio: </b></h4>
+            </ion-col>
+            <ion-col size="3" class="filaBlanco" class="ion-text-right">
+                <h4>{{ orden.valorTotal | currency: "$" }}</h4>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

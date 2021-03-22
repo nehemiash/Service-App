@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { registerLocaleData } from '@angular/common';
 
+
 registerLocaleData(es);
 
 @NgModule({

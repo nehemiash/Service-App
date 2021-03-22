@@ -51,7 +51,7 @@ export class AppComponent {
 
     setInterval(() => {
       this.date = Date.now().toString();
-    }, 1000);
+    }, 10000);
 
   }
 }

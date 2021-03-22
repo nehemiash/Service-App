@@ -2,7 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Usuario } from '../interfaces/interfaces';
+import { Usuario, Usuarios } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 const URL = environment.url;
 
@@ -142,7 +142,19 @@ export class UsuarioService {
     this.usuario = null;
     this.storage.clear();
     this.navCtrl.navigateRoot('/login', { animated: true });
+    setTimeout(this.refresh, 100);
+  }
+
+  refresh() {
     window.location.reload();
+  }
+
+  listaTecnicos() {
+    const headers = new HttpHeaders({
+      token: this.token
+    });
+    
+    return this.http.get(`${URL}/tecnico`, { headers });
   }
 
 }

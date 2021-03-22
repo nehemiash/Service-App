@@ -1,5 +1,91 @@
 <app-header titulo="Ordenes"></app-header>
 
-<ion-content>
-    <ion-button routerLink="/crear-orden" shape="round" color="secondary"> Nueva Orden </ion-button>
+<ion-content class="ion-padding">
+    <ion-searchbar placeholder="Buscar Orden" inputmode="decimal" type="decimal" debounce="700" animated [value]="textoBuscar" (ionChange)="buscar( $event )"></ion-searchbar>
+    <!-- todos los clientes -->
+    <ion-grid *ngIf="bandera === 0" class="ion-text-uppercase">
+        <ion-row class="tablaHeader">
+            <ion-col size="0.5">Num</ion-col>
+            <ion-col size="1.5">Serie</ion-col>
+            <ion-col size="3">Descripcion</ion-col>
+            <ion-col size="3">Cliente</ion-col>
+            <ion-col size="2">Fecha</ion-col>
+            <ion-col size="2">Situacion</ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let orden of ordenes; let i = index" button (click)="verDetalle( orden._id )" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+            <ion-col size="0.5" class="ion-align-self-center">
+                <ion-label> {{orden.numero}} </ion-label>
+            </ion-col>
+            <ion-col size="1.5" class="ion-align-self-center">
+                <ion-label> {{orden.serie1}} </ion-label>
+            </ion-col>
+            <ion-col size="3" class="ion-align-self-center long-text">
+                <ion-label>{{orden.producto.descripcion}}</ion-label>
+            </ion-col>
+            <ion-col size="3" class="ion-align-self-center long-text">
+                <ion-label>{{orden.cliente.codigo}}-{{orden.cliente.nombre}}</ion-label>
+            </ion-col>
+            <ion-col size="2" class="ion-align-self-center ion-text-lowercase">
+                <ion-label>{{orden.creado | date : "dd/MM/y HH:mm"}}</ion-label>
+            </ion-col>
+            <ion-col size="2" class="ion-align-self-center ion-text-lowercase">
+                <ion-label>{{orden.situacion}}</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row class="tablaFooter"></ion-row>
+    </ion-grid>
+    <!-- resultado busqueda -->
+    <!-- <ion-grid *ngIf="bandera === 1" class="ion-text-uppercase">
+        <ion-row class="tablaHeader">
+            <ion-col size="1">Cod</ion-col>
+            <ion-col size="4">Nombre</ion-col>
+            <ion-col size="2">Documento</ion-col>
+            <ion-col size="2">Celular</ion-col>
+            <ion-col size="3">Email</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let cliente of buscaClientes; let i = index" button (click)="verDetalle( cliente._id )" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+            <ion-col size="1" class="ion-align-self-center">
+                <ion-label>{{cliente.codigo}}</ion-label>
+            </ion-col>
+            <ion-col size="4" class="ion-align-self-center">
+                <ion-label>{{cliente.nombre}}</ion-label>
+            </ion-col>
+            <ion-col size="2" class="ion-align-self-center">
+                <ion-label>{{cliente.documento}}</ion-label>
+            </ion-col>
+            <ion-col size="2" class="ion-align-self-center">
+                <ion-label>{{cliente.celular}}</ion-label>
+            </ion-col>
+            <ion-col size="3" class="ion-align-self-center ion-text-lowercase">
+                <ion-label>{{cliente.email}}</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row class="tablaFooter"></ion-row>
+    </ion-grid> -->
+
+    <!-- <ion-grid fixed>
+        <ion-row>
+            <ion-col class="ion-text-center">
+                <ion-spinner name="dots" *ngIf="buscando"></ion-spinner>
+            </ion-col>
+        </ion-row>
+    </ion-grid> -->
+
+    <!-- si no hay nada -->
+    <!-- <ion-list *ngIf="nada">
+        <ion-grid>
+            <ion-row>
+                <ion-col class="ion-text-center">
+                    <label> No se encontro ningun cliente 😢</label>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-list> -->
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="bottom20 right20">
+        <ion-fab-button routerLink="/crear-orden-paso" color="success">
+            <ion-icon name="add" size="large"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>

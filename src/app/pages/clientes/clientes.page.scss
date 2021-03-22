@@ -8,3 +8,12 @@
 .searchbar-input {
     background-color: white;
 }
+
+ion-select::part(placeholder),
+ion-select::part(text) {
+    flex: 0 0 auto;
+}
+
+ion-select {
+    max-width: 100% !important;
+}

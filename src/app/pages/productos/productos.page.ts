@@ -39,6 +39,7 @@ export class ProductosPage implements OnInit {
   async verDetalle(id: string) {
     const modal = await this.modalCtrl.create({
       component: ProductoDetalleComponent,
+      cssClass: 'smallscreen',
       componentProps: {
         id
       }

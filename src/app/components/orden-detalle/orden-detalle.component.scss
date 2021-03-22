@@ -1,0 +1,35 @@
+h4 {
+    margin-top: 5px !important;
+}
+
+.fondo {
+    --ion-background-color: #fff !important;
+}
+
+.tabla {
+    max-width: 1000px !important;
+}
+
+.filaGris {
+    background-color: #b5b8b7;
+    color: #5b5b5b;
+    padding-right: 15px;
+}
+
+.filaGrisClaro {
+    background-color: #ececec;
+    color: #5b5b5b;
+    padding-left: 15px;
+}
+
+.filaBlanco {
+    background-color: #fff;
+    color: #5b5b5b;
+    padding-left: 15px;
+}
+
+.tituloOrden {
+    font-size: xx-large !important;
+    font-weight: bold !important;
+    padding: 20px 0px 20px;
+}

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Categorias, NuevaCategoriaResp, CategoriasDetalle, Notas } from '../interfaces/microInterfaces';
+import { Categorias, NuevaCategoriaResp, CategoriasDetalle, Notas, ProblemasResp, NuevoProblemaResp, ProblemaAgrup } from '../interfaces/microInterfaces';
 import { environment } from '../../environments/environment';
+import { Usuario } from '../interfaces/ordenInterfaces';
+import { Usuarios } from '../interfaces/interfaces';
 
 const URL = environment.url;
 
@@ -19,11 +21,13 @@ export class MicroService {
 
   ) { }
 
-
-  // CATEGORIAS
   async cargarToken() {
     this.token = await this.storage.get('token') || null;
   }
+
+  /*=============================================
+  =            CATEGORIAS            =
+  =============================================*/
 
 
   getCategorias(tipo: string) {
@@ -134,6 +138,14 @@ export class MicroService {
     });
   }
 
+
+
+
+
+  /*=============================================
+  =            NOTAS            =
+  =============================================*/
+
   nuevaNota(nota: any) {
 
     console.log(nota);
@@ -166,6 +178,41 @@ export class MicroService {
     });
 
     return this.http.get<Notas>(`${URL}/nota/${id}`, { headers });
+
+  }
+
+
+  /*=============================================
+  =            PROBLEMAS            =
+  =============================================*/
+
+  getProblemas() {
+
+    const headers = new HttpHeaders({
+      token: this.token
+    });
+
+    return this.http.get<ProblemasResp>(`${URL}/problemacat/`, { headers });
+
+  }
+
+  nuevoProblema(problema: any) {
+
+    const headers = new HttpHeaders({
+      token: this.token
+    });
+
+    return this.http.post<NuevoProblemaResp>(`${URL}/problema`, problema, { headers });
+
+  }
+
+  getProblemasAgrup(cat: string) {
+
+    const headers = new HttpHeaders({
+      token: this.token
+    });
+
+    return this.http.get<ProblemaAgrup>(`${URL}/problemacat/listar/?categoria=${cat}`, { headers });
 
   }
 

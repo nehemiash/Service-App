@@ -45,6 +45,7 @@ export class ClienteBuscarComponent implements OnInit {
           nombre: this.clienteSel.nombre,
           codigo: this.clienteSel.codigo,
           telefono: this.clienteSel.telefono,
+          celular: this.clienteSel.celular,
           direccion: this.clienteSel.direccion,
           email: this.clienteSel.email,
           documento: this.clienteSel.documento,

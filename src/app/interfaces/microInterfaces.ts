@@ -53,3 +53,35 @@ export interface Nota {
     tipo?: string;
     creada?: string;
 }
+
+export interface ProblemasResp {
+    categorias: Problema[];
+}
+
+export interface Problema {
+    _id: string;
+}
+
+export interface NuevoProblemaResp {
+    ok?: boolean;
+    problema?: NuevoProblema;
+}
+
+export interface NuevoProblema {
+    estado?: boolean;
+    _id?: string;
+    descripcion?: string;
+    categoria?: string;
+}
+
+export interface ProblemaAgrup {
+    ok?: boolean;
+    problema?: ProblemaDetalle[];
+}
+
+export interface ProblemaDetalle {
+    estado?: boolean;
+    _id?: string;
+    descripcion?: string;
+    categoria?: string;
+}

@@ -30,9 +30,6 @@ export class ClienteDetalleComponent implements OnInit {
 
 
   async ngOnInit() {
-
-
-
     this.clienteService.getClienteDetalle(this.id)
       .subscribe(resp => {
         this.cliente = resp.cliente;

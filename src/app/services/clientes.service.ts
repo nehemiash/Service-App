@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Storage } from '@ionic/storage';
 import { ClientesDetalle, Clientes, Cliente, ClienteDetalle } from '../interfaces/clienteInterface';
-import { UiServiceService } from './ui-service.service';
+
 
 const URL = environment.url;
 
@@ -24,21 +24,39 @@ export class ClientesService {
     this.token = await this.storage.get('token') || null;
   }
 
-  getClientes(pull: boolean = false) {
+  getClientes(pull: boolean = false, direccion: string, limite: number, sort: string) {
 
-    if (pull) {
-      this.paginaCero();
+    if (this.paginaCli <= 1) {
+      this.paginaCli = 1;
     }
 
-    this.paginaCli++;
+    switch (direccion) {
+      case 'atras':
+        this.paginaCli--;
+        break;
+
+      case 'siguiente':
+        this.paginaCli++;
+        break;
+
+      case 'ninguna':
+        break;
+
+      case 'inicio':
+        this.paginaCli = 1;
+        break;
+    }
+
 
     const headers = new HttpHeaders({
       token: this.token
     });
 
-    return this.http.get<Clientes>(`${URL}/cliente?pagina=${this.paginaCli}`, { headers });
+    return this.http.get<Clientes>(`${URL}/cliente?pagina=${this.paginaCli}&limite=${limite}&sort=${sort}`, { headers });
 
   }
+
+
 
   getClienteDetalle(id: string) {
 
