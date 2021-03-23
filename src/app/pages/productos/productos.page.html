@@ -8,23 +8,64 @@
     <!-- todos los productos -->
     <ion-grid *ngIf="bandera === 0" class="ion-text-uppercase">
         <ion-row class="tablaHeader">
-            <ion-col size="1">Cod</ion-col>
-            <ion-col size="5">Descripcion</ion-col>
-            <ion-col size="1">Marca</ion-col>
-            <ion-col size="1">Modelo</ion-col>
-            <ion-col size="2">Parte</ion-col>
-            <ion-col size="2">Categoria</ion-col>
+            <ion-col size="0.5">C</ion-col>
+            <ion-col size="5.5" class="long-text">Descripcion</ion-col>
+            <ion-col size="2" class="long-text">Parte</ion-col>
+            <ion-col size="2" class="long-text">Marca</ion-col>
+            <ion-col size="2" class="long-text">Categoria</ion-col>
         </ion-row>
 
         <ion-row *ngFor="let producto of productos;let i = index" button (click)="verDetalle( producto._id )" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
-            <ion-col size="1">{{producto.codigo}}</ion-col>
-            <ion-col size="5">{{producto.descripcion}}</ion-col>
-            <ion-col size="1">{{producto.marca}}</ion-col>
-            <ion-col size="1">{{producto.modelo}}</ion-col>
-            <ion-col size="2">{{producto.numParte}}</ion-col>
-            <ion-col size="2">{{producto.categoria.descripcion}}</ion-col>
+            <ion-col size="0.5">{{producto.codigo}}</ion-col>
+            <ion-col size="5.5" class="long-text">{{producto.descripcion}}</ion-col>
+            <ion-col size="2" class="long-text">{{producto.numParte}}</ion-col>
+            <ion-col size="2" class="long-text">{{producto.marca}}</ion-col>
+            <ion-col size="2" class="long-text">{{producto.categoria.descripcion}}</ion-col>
         </ion-row>
-        <ion-row class="tablaFooter"></ion-row>
+        <ion-row class="tablaFooter">
+            <ion-col size="" class="ion-no-padding">
+                <ion-item lines="none" color="secondary" class="ion-text-center">
+                    <ion-button *ngIf="pagina !== 1" (click)="siguientes('atras')" color="secondary" size="small">
+                        <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
+                    </ion-button>
+                    <ion-item color="secondary" lines="none">
+                        <ion-label> Pagina {{pagina}} / {{total_pag}} </ion-label>
+                    </ion-item>
+
+                    <ion-button *ngIf="pagina !== total_pag" (click)="siguientes('siguiente')" color="secondary" size="small">
+                        <ion-icon slot="icon-only" name="chevron-forward"></ion-icon>
+                    </ion-button>
+                </ion-item>
+            </ion-col>
+            <ion-col size="auto"></ion-col>
+            <ion-col size="auto">
+                <ion-list>
+                    <ion-item color="secondary" lines="none">
+                        <ion-icon name="filter"></ion-icon>
+                        <ion-select name="filtro" value="descripcion" (ionChange)="ordenarPor($event)">
+                            <ion-select-option value="descripcion">DESCRIPCION</ion-select-option>
+                            <ion-select-option value="marca">MARCA</ion-select-option>
+                            <ion-select-option value="modelo">MODELO</ion-select-option>
+                            <ion-select-option value="numParte">PARTE</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+            <ion-col size="auto">
+                <ion-list>
+                    <ion-item color="secondary" lines="none">
+                        <ion-icon name="list"></ion-icon>
+                        <ion-select name="filtro" value="20" (ionChange)="cambioFiltro($event)">
+                            <ion-select-option value="5">5</ion-select-option>
+                            <ion-select-option value="10">10</ion-select-option>
+                            <ion-select-option value="15">15</ion-select-option>
+                            <ion-select-option value="20">20</ion-select-option>
+                            <ion-select-option value="50">50</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
     </ion-grid>
 
     <!-- resultado busqueda -->
@@ -39,13 +80,12 @@
         </ion-row>
         <ion-row *ngFor="let producto of buscaProductos; let i = index" button (click)="verDetalle( producto._id )" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
             <ion-col size="1">{{producto.codigo}}</ion-col>
-            <ion-col size="5">{{producto.descripcion}}</ion-col>
+            <ion-col size="5" class="long-text">{{producto.descripcion}}</ion-col>
             <ion-col size="1">{{producto.marca}}</ion-col>
             <ion-col size="1">{{producto.modelo}}</ion-col>
             <ion-col size="2">{{producto.numParte}}</ion-col>
             <ion-col size="2">{{producto.categoria.descripcion}}</ion-col>
         </ion-row>
-        <ion-row class="tablaFooter"></ion-row>
     </ion-grid>
 
     <!-- si no hay nada -->

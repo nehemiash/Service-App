@@ -21,6 +21,11 @@ export class ProductosPage implements OnInit {
   nada = false;
   habilitado = true;
   edit = false;
+  limite = 20;
+  pagina = 1;
+  total_pag;
+  sort = '_id';
+
 
   categ: Categoria[] = [];
 
@@ -48,22 +53,35 @@ export class ProductosPage implements OnInit {
     modal.present();
   }
 
-  recargar(event) {
-
-    this.siguientes(event, true);
+  recargar(event?) {
+    this.siguientes('ninguna', event, true);
 
   }
 
-  siguientes(event?, pull: boolean = false) {
+  cambioFiltro(event?) {
+    this.limite = event.detail.value;
+    this.siguientes('inicio');
+  }
+
+  ordenarPor(event?) {
+    this.sort = event.detail.value;
+    this.recargar();
+  }
+
+  siguientes(direccion?: string, event?, pull: boolean = false) {
 
     if (pull) {
       this.habilitado = true;
       this.productos = [];
     }
 
-    this.productoService.getProductos(pull)
+    this.productos = [];
+    this.productoService.getProductos(pull, direccion, this.limite, this.sort)
       .subscribe(resp => {
         this.productos.push(...resp.productos);
+
+        this.pagina = resp.pagina;
+        this.total_pag = resp.total_paginas;
 
         if (event) {
           event.target.complete();

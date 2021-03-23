@@ -28,11 +28,10 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
-ion-toggle {
-    --background-checked: #4aa3a7;
-    --handle-background-checked: #fff;
-}
-
+// ion-toggle {
+//     --background-checked: #4aa3a7;
+//     --handle-background-checked: #fff;
+// }
 toast-wrapper {
     --box-shadow: 1px 1px 11px -1px darkslategrey !important;
     box-shadow: 1px 1px 11px -1px darkslategrey !important;

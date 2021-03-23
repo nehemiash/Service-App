@@ -23,19 +23,34 @@ export class ProductosService {
     this.token = await this.storage.get('token') || null;
   }
 
-  getProductos(pull: boolean = false) {
+  getProductos(pull: boolean = false, direccion: string, limite: number, sort: string) {
 
-    if (pull) {
-      this.paginaCero();
+    if (this.paginaProd <= 1) {
+      this.paginaProd = 1;
     }
 
-    this.paginaProd++;
+    switch (direccion) {
+      case 'atras':
+        this.paginaProd--;
+        break;
+
+      case 'siguiente':
+        this.paginaProd++;
+        break;
+
+      case 'ninguna':
+        break;
+
+      case 'inicio':
+        this.paginaProd = 1;
+        break;
+    }
 
     const headers = new HttpHeaders({
       token: this.token
     });
 
-    return this.http.get<Productos>(`${URL}/producto?pagina=${this.paginaProd}`, { headers });
+    return this.http.get<Productos>(`${URL}/producto?pagina=${this.paginaProd}&limite=${limite}&sort=${sort}`, { headers });
 
   }
 

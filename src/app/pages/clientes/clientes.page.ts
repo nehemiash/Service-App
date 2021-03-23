@@ -13,7 +13,7 @@ import { NuevoClienteComponent } from '../../components/nuevo-cliente/nuevo-clie
 export class ClientesPage implements OnInit {
 
   clientes: Cliente[] = [];
-  limite = 20;
+  limite = 10;
   textoBuscar = '';
   buscaClientes: Cliente[] = [];
   bandera = 0;
@@ -55,7 +55,6 @@ export class ClientesPage implements OnInit {
 
   recargar(event?) {
     this.siguientes('ninguna', event, true);
-    console.log(this.limite);
 
   }
 
