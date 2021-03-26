@@ -1,99 +1,66 @@
 <app-header titulo="Productos"></app-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-no-padding">
     <ion-refresher slot="fixed" (ionRefresh)="recargar($event)">
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
+    <ion-item lines="none" class="ion-no-padding" *ngIf="bandera === 0" color="primary">
+        <ion-list slot="end">
+            <ion-item color="primary" lines="none">
+                <ion-label>
+                    <h4>ORDEN</h4>
+                </ion-label>
+                <ion-select name="filtro" value="descripcion" (ionChange)="ordenarPor($event)">
+                    <ion-select-option value="descripcion">DESCRIPCION</ion-select-option>
+                    <ion-select-option value="numParte">PARTE</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+        <ion-list slot="end">
+            <ion-item lines="none" color="primary">
+                <ion-label>
+                    <h3>MOSTRAR</h3>
+                </ion-label>
+                <ion-select name="filtro" value="10" (ionChange)="cambioFiltro($event)">
+                    <ion-select-option value="5">5</ion-select-option>
+                    <ion-select-option value="10">10</ion-select-option>
+                    <ion-select-option value="15">15</ion-select-option>
+                    <ion-select-option value="20">20</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </ion-item>
+
     <ion-searchbar placeholder="Buscar Producto" inputmode="decimal" type="decimal" debounce="700" animated [value]="textoBuscar" (ionChange)="buscar( $event )"></ion-searchbar>
+
     <!-- todos los productos -->
-    <ion-grid *ngIf="bandera === 0" class="ion-text-uppercase">
-        <ion-row class="tablaHeader">
-            <ion-col size="0.5">C</ion-col>
-            <ion-col size="5.5" class="long-text">Descripcion</ion-col>
-            <ion-col size="2" class="long-text">Parte</ion-col>
-            <ion-col size="2" class="long-text">Marca</ion-col>
-            <ion-col size="2" class="long-text">Categoria</ion-col>
-        </ion-row>
-
-        <ion-row *ngFor="let producto of productos;let i = index" button (click)="verDetalle( producto._id )" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
-            <ion-col size="0.5">{{producto.codigo}}</ion-col>
-            <ion-col size="5.5" class="long-text">{{producto.descripcion}}</ion-col>
-            <ion-col size="2" class="long-text">{{producto.numParte}}</ion-col>
-            <ion-col size="2" class="long-text">{{producto.marca}}</ion-col>
-            <ion-col size="2" class="long-text">{{producto.categoria.descripcion}}</ion-col>
-        </ion-row>
-        <ion-row class="tablaFooter">
-            <ion-col size="" class="ion-no-padding">
-                <ion-item lines="none" color="secondary" class="ion-text-center">
-                    <ion-button *ngIf="pagina !== 1" (click)="siguientes('atras')" color="secondary" size="small">
-                        <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
-                    </ion-button>
-                    <ion-item color="secondary" lines="none">
-                        <ion-label> Pagina {{pagina}} / {{total_pag}} </ion-label>
-                    </ion-item>
-
-                    <ion-button *ngIf="pagina !== total_pag" (click)="siguientes('siguiente')" color="secondary" size="small">
-                        <ion-icon slot="icon-only" name="chevron-forward"></ion-icon>
-                    </ion-button>
-                </ion-item>
-            </ion-col>
-            <ion-col size="auto"></ion-col>
-            <ion-col size="auto">
-                <ion-list>
-                    <ion-item color="secondary" lines="none">
-                        <ion-icon name="filter"></ion-icon>
-                        <ion-select name="filtro" value="descripcion" (ionChange)="ordenarPor($event)">
-                            <ion-select-option value="descripcion">DESCRIPCION</ion-select-option>
-                            <ion-select-option value="marca">MARCA</ion-select-option>
-                            <ion-select-option value="modelo">MODELO</ion-select-option>
-                            <ion-select-option value="numParte">PARTE</ion-select-option>
-                        </ion-select>
-                    </ion-item>
-                </ion-list>
-            </ion-col>
-            <ion-col size="auto">
-                <ion-list>
-                    <ion-item color="secondary" lines="none">
-                        <ion-icon name="list"></ion-icon>
-                        <ion-select name="filtro" value="20" (ionChange)="cambioFiltro($event)">
-                            <ion-select-option value="5">5</ion-select-option>
-                            <ion-select-option value="10">10</ion-select-option>
-                            <ion-select-option value="15">15</ion-select-option>
-                            <ion-select-option value="20">20</ion-select-option>
-                            <ion-select-option value="50">50</ion-select-option>
-                        </ion-select>
-                    </ion-item>
-                </ion-list>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+    <ion-list *ngIf="bandera === 0">
+        <ion-item *ngFor="let producto of productos;let i = index" button (click)="verDetalle( producto._id )" lines="full">
+            <!-- <ion-icon slot="start" name="ellipse-outline" color="medium" size="large"></ion-icon> -->
+            <ion-label lines="full">
+                <h2>{{producto.descripcion | uppercase }}</h2>
+                <p class="x-small">{{producto.numParte | uppercase}} - {{producto.categoria.descripcion | uppercase}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
 
     <!-- resultado busqueda -->
-    <ion-grid *ngIf="bandera === 1" class="ion-text-uppercase">
-        <ion-row class="tablaHeader">
-            <ion-col size="1">Cod</ion-col>
-            <ion-col size="5">Descripcion</ion-col>
-            <ion-col size="1">Marca</ion-col>
-            <ion-col size="1">Modelo</ion-col>
-            <ion-col size="2">Parte</ion-col>
-            <ion-col size="2">Categoria</ion-col>
-        </ion-row>
-        <ion-row *ngFor="let producto of buscaProductos; let i = index" button (click)="verDetalle( producto._id )" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
-            <ion-col size="1">{{producto.codigo}}</ion-col>
-            <ion-col size="5" class="long-text">{{producto.descripcion}}</ion-col>
-            <ion-col size="1">{{producto.marca}}</ion-col>
-            <ion-col size="1">{{producto.modelo}}</ion-col>
-            <ion-col size="2">{{producto.numParte}}</ion-col>
-            <ion-col size="2">{{producto.categoria.descripcion}}</ion-col>
-        </ion-row>
-    </ion-grid>
+    <ion-list *ngIf="bandera === 1">
+        <ion-item *ngFor="let producto of buscaProductos; let i = index" button (click)="verDetalle( producto._id )" lines="full">
+            <!-- <ion-icon slot="start" name="ellipse-outline" color="medium" size="large"></ion-icon> -->
+            <ion-label lines="full">
+                <h2>{{producto.descripcion | uppercase }}</h2>
+                <p class="x-small">{{producto.numParte | uppercase}} - {{producto.categoria.descripcion | uppercase}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
 
     <!-- si no hay nada -->
     <ion-list *ngIf="nada">
         <ion-grid>
             <ion-row>
                 <ion-col class="ion-text-center">
-                    <label> No se encontro ningun producto 😢</label>
+                    <label> No se encontró ningun producto 😢</label>
                 </ion-col>
             </ion-row>
         </ion-grid>
@@ -106,12 +73,24 @@
         </ion-row>
     </ion-grid>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="bottom20 right20">
-        <ion-fab-button (click)="onClick()" color="success">
+        <ion-fab-button (click)="onClick()" color="primary">
             <ion-icon name="add" size="large"></ion-icon>
         </ion-fab-button>
     </ion-fab>
-
-    <!-- <ion-infinite-scroll [disabled]="!habilitado" threshold="100px" (ionInfinite)="siguientes($event)">
-        <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Cargando..."> </ion-infinite-scroll-content>
-    </ion-infinite-scroll> -->
 </ion-content>
+
+<ion-footer *ngIf="bandera === 0">
+    <ion-toolbar color="primary" class="ion-no-padding">
+        <ion-item color="primary" class="ion-text-center" lines="none">
+            <ion-button [disabled]="pagina === 1" (click)="siguientes('atras')" color="primary" slot="start" size="default">
+                <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
+            </ion-button>
+            <ion-label>
+                <h3>PAGINA {{pagina}} DE {{totalpag}}</h3>
+            </ion-label>
+            <ion-button [disabled]="pagina === totalpag" (click)="siguientes('siguiente')" color="primary" slot="end" size="default">
+                <ion-icon slot="icon-only" name="chevron-forward"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ion-toolbar>
+</ion-footer>

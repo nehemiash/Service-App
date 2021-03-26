@@ -21,8 +21,11 @@ export class RepuestosPage implements OnInit {
   nada = false;
   habilitado = true;
   edit = false;
-
   categ: Categoria[] = [];
+  limite = 20;
+  sort = 'descripcion';
+  pagina = 1;
+  totalpag;
 
   constructor(
     private repuestoService: RepuestosService,
@@ -39,7 +42,6 @@ export class RepuestosPage implements OnInit {
   async verDetalle(id: string) {
     const modal = await this.modalCtrl.create({
       component: RespuestoDetalleComponent,
-      cssClass: 'smallscreen',
       componentProps: {
         id
       }
@@ -48,22 +50,37 @@ export class RepuestosPage implements OnInit {
     modal.present();
   }
 
-  recargar(event) {
+  recargar(event?) {
 
-    this.siguientes(event, true);
+    this.siguientes('ninguna', event, true);
 
   }
 
-  siguientes(event?, pull: boolean = false) {
+  cambioFiltro(event?) {
+    this.limite = event.detail.value;
+    this.siguientes('inicio');
+  }
+
+  ordenarPor(event?) {
+    this.sort = event.detail.value;
+    this.recargar();
+  }
+
+  siguientes(direccion?: string, event?, pull: boolean = false) {
 
     if (pull) {
       this.habilitado = true;
       this.repuestos = [];
     }
 
-    this.repuestoService.getRepuestos(pull)
+    this.repuestos = [];
+    this.repuestoService.getRepuestos(pull, direccion, this.limite, this.sort)
       .subscribe(resp => {
         this.repuestos.push(...resp.repuestos);
+
+        this.pagina = resp.pagina;
+        this.totalpag = resp.total_paginas;
+
         if (event) {
           event.target.complete();
           if (resp.repuestos.length === 0) {
@@ -110,7 +127,6 @@ export class RepuestosPage implements OnInit {
   async onClick() {
     const modal = await this.modalCtrl.create({
       component: NuevoRepuestoComponent,
-      cssClass: 'smallscreen',
     });
 
     modal.present();

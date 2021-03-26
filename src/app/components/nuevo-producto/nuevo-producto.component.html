@@ -1,14 +1,15 @@
 <ion-header>
     <ion-toolbar color="primary">
-        <ion-title class="negrita">Agregar Nuevo Producto</ion-title>
+        <ion-title>NUEVO</ion-title>
         <ion-buttons slot="start">
-            <ion-button slot="end">
-                <ion-icon name="cube" slot="icon-only"></ion-icon>
+            <ion-button (click)="cerrarModal()" slot="start">
+                <ion-icon name="chevron-back" slot="icon-only"></ion-icon>
             </ion-button>
-        </ion-buttons>
-        <ion-buttons slot="end">
-            <ion-button (click)="cerrarModal()">
-                <ion-icon slot="end" name="close" size="large" slot="icon-only" shape="round"></ion-icon>
+
+            <ion-button (click)="cerrarModal()" slot="start">
+                <ion-label>
+                    <h3>CANCELAR</h3>
+                </ion-label>
             </ion-button>
         </ion-buttons>
     </ion-toolbar>
@@ -19,72 +20,60 @@
             <ion-row>
                 <ion-col size="12">
                     <ion-item lines="full">
-                        <ion-label class="negrita" color="dark">Descripcion:</ion-label>
+                        <ion-label color="primary">Descripción:</ion-label>
                         <ion-input [(ngModel)]="nuevoProd.descripcion" name="descripcion" type="text" required class="ion-text-uppercase"></ion-input>
                     </ion-item>
                 </ion-col>
-                <ion-col size="10">
-                    <ion-item lines="full" *ngIf="!nuevaMarca">
-                        <ion-label class="negrita" color="dark">Marca:</ion-label>
-                        <ion-select placeholder="Seleccionar" name="marcas" [(ngModel)]="nuevoProd.marca" interface="popover" class="ion-text-capitalize">
-                            <ion-select-option *ngFor="let marca of marcas" value="{{ marca._id }}" required class="ion-text-capitalize">{{ marca._id }}
-                            </ion-select-option>
-                        </ion-select>
-                    </ion-item>
-                    <ion-item lines="full" *ngIf="nuevaMarca">
-                        <ion-label class="negrita" color="dark">Marca:</ion-label>
-                        <ion-input [(ngModel)]="nuevoProd.marca" name="marca" type="text" required class="ion-text-uppercase"></ion-input>
-                        <ion-button color="secondary" (click)="boton2off()" *ngIf="boton2">Guardar</ion-button>
+                <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12">
+                    <ion-item lines="full">
+                        <ion-label color="primary">Parte:</ion-label>
+                        <ion-input [(ngModel)]="nuevoProd.numParte" name="parte" type="text" required class="ion-text-uppercase"></ion-input>
                     </ion-item>
                 </ion-col>
-                <ion-col size="2">
+                <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12">
+                    <ion-item lines="full">
+                        <ion-label color="primary">Modelo:</ion-label>
+                        <ion-input [(ngModel)]="nuevoProd.modelo" name="modelo" type="text" required class="ion-text-uppercase"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12">
                     <ion-item lines="full" *ngIf="!nuevaMarca">
-                        <ion-button color="secondary" (click)="agregarMarca()">
+                        <ion-label color="primary">Marca:</ion-label>
+                        <ion-select placeholder="Seleccionar" name="marcas" [(ngModel)]="nuevoProd.marca" interface="popover" class="ion-text-capitalize">
+                            <ion-select-option *ngFor="let marca of marcas" value="{{ marca._id }}" required>{{ marca._id | titlecase }}
+                            </ion-select-option>
+                        </ion-select>
+                        <ion-button color="primary" (click)="agregarMarca()">
                             <ion-icon slot="icon-only" name="add"></ion-icon>
                         </ion-button>
                     </ion-item>
                     <ion-item lines="full" *ngIf="nuevaMarca">
-                        <ion-button color="secondary" (click)="agregarMarca()">
+                        <ion-label color="primary">Marca:</ion-label>
+                        <ion-input [(ngModel)]="nuevoProd.marca" name="marca" type="text" required class="ion-text-uppercase"></ion-input>
+                        <ion-button color="primary" (click)="boton2off()" *ngIf="boton2">Guardar</ion-button>
+                        <ion-button color="primary" (click)="agregarMarca()">
                             <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
                         </ion-button>
                     </ion-item>
                 </ion-col>
-                <ion-col size="12">
+                <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12" *ngIf="!nuevaCat">
                     <ion-item lines="full">
-                        <ion-label class="negrita" color="dark">Modelo:</ion-label>
-                        <ion-input [(ngModel)]="nuevoProd.modelo" name="modelo" type="text" required class="ion-text-uppercase"></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size="12">
-                    <ion-item lines="full">
-                        <ion-label class="negrita" color="dark">Parte:</ion-label>
-                        <ion-input [(ngModel)]="nuevoProd.numParte" name="parte" type="text" required class="ion-text-uppercase"></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size="10" *ngIf="!nuevaCat">
-                    <ion-item lines="full">
-                        <ion-label class="negrita" color="dark">Categoria:</ion-label>
+                        <ion-label color="primary">Categoría:</ion-label>
                         <ion-select placeholder="Seleccionar" name="categoria" [(ngModel)]="nuevoProd.categoria._id" required interface="popover" class="ion-text-capitalize">
-                            <ion-select-option *ngFor="let cat of categ" value="{{ cat._id }}" required class="ion-text-capitalize">{{ cat.descripcion }}
+                            <ion-select-option *ngFor="let cat of categ" value="{{ cat._id }}" required>{{ cat.descripcion | titlecase }}
                             </ion-select-option>
                         </ion-select>
-                    </ion-item>
-                </ion-col>
-                <ion-col size="10" *ngIf="nuevaCat">
-                    <ion-item lines="full">
-                        <ion-label class="negrita" color="dark">Categoria:</ion-label>
-                        <ion-input [(ngModel)]="nuevoProd.categoria.descripcion" name="categoria" type="text" required class="ion-text-uppercase"></ion-input>
-                        <ion-button color="secondary" (click)="crearCat()" *ngIf="boton">Guardar</ion-button>
-                    </ion-item>
-                </ion-col>
-                <ion-col size="2">
-                    <ion-item lines="full" *ngIf="!nuevaCat">
-                        <ion-button color="secondary" (click)="agregarCat()">
+                        <ion-button color="primary" (click)="agregarCat()">
                             <ion-icon slot="icon-only" name="add"></ion-icon>
                         </ion-button>
                     </ion-item>
-                    <ion-item lines="full" *ngIf="nuevaCat">
-                        <ion-button color="secondary" (click)="agregarCat()">
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12" *ngIf="nuevaCat">
+                    <ion-item lines="full">
+                        <ion-label color="primary">Categoría:</ion-label>
+                        <ion-input [(ngModel)]="nuevoProd.categoria.descripcion" name="categoria" type="text" required class="ion-text-uppercase"></ion-input>
+                        <ion-button color="primary" (click)="crearCat()" *ngIf="boton">Guardar</ion-button>
+                        <ion-button color="primary" (click)="agregarCat()">
                             <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
                         </ion-button>
                     </ion-item>
@@ -93,14 +82,8 @@
 
             <ion-row>
                 <ion-col class="ion-text-center top50">
-                    <ion-button type="submit" color="success" shape="round" [disabled]="fProducto.invalid">
+                    <ion-button type="submit" size="default" [disabled]="fProducto.invalid">
                         <ion-label>GUARDAR</ion-label>
-                    </ion-button>
-                    <ion-button (click)="limpiar()" color="warning" shape="round">
-                        <ion-label>LIMPIAR</ion-label>
-                    </ion-button>
-                    <ion-button (click)="cerrarModal()" color="danger" shape="round">
-                        <ion-label>CANCELAR</ion-label>
                     </ion-button>
                 </ion-col>
             </ion-row>

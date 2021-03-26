@@ -27,7 +27,7 @@
 
                     <ion-row>
                         <ion-col>
-                            <ion-button class="ion-text-uppercase" type="submit" color="success" shape="round" [disabled]="fLogin.invalid">
+                            <ion-button class="ion-text-uppercase" type="submit" color="primary" [disabled]="fLogin.invalid">
                                 Iniciar Sesion
                             </ion-button>
                         </ion-col>
@@ -85,18 +85,11 @@
 
 <ion-footer no-border>
     <ion-toolbar color="primary">
-        <ion-grid class="grid-max-width">
+        <ion-grid>
             <ion-row class="ion-text-uppercase">
-                <ion-col>
-                    <ion-button (click)="mostrarRegistro()" shape="round" expand="full" fill="outline" color="light">
-                        Ingresar
-                    </ion-button>
-                </ion-col>
-
-                <ion-col class="ion-align-items-center">
-                    <ion-button (click)="mostrarLogin()" shape="round" expand="full" fill="outline" color="light">
-                        Registrarme
-                    </ion-button>
+                <ion-col size="12" class="ion-text-center">
+                    <ion-button (click)="mostrarRegistro()" fill="outline" color="light"> Ingresar </ion-button>
+                    <ion-button (click)="mostrarLogin()" fill="outline" color="light"> Registrarme </ion-button>
                 </ion-col>
             </ion-row>
         </ion-grid>

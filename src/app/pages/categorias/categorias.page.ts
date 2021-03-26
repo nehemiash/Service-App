@@ -18,7 +18,7 @@ export class CategoriasPage implements OnInit {
   width = 0;
   categ: Categoria[] = [];
   categ2: Categoria[] = [];
-
+  vistaCat = true;
   eliminar = false;
   eliminar2 = false;
 
@@ -44,6 +44,20 @@ export class CategoriasPage implements OnInit {
     this.obtenerCategorias2();
   }
 
+  cambio(event) {
+    const vista = event.detail.value;
+
+    switch (vista) {
+      case 'productos':
+        this.vistaCat = true;
+        break;
+      case 'repuestos':
+        this.vistaCat = false;
+        break;
+    }
+
+  }
+
   obtenerCategorias() {
     this.categ = [];
     this.microService.getCatSort('producto')
@@ -64,7 +78,6 @@ export class CategoriasPage implements OnInit {
   async onClick() {
     const modal = await this.modalCtrl.create({
       component: NuevaCategoriaComponent,
-      cssClass: 'smallscreen',
     });
 
     modal.present();
@@ -77,7 +90,6 @@ export class CategoriasPage implements OnInit {
 
     const modal = await this.modalCtrl.create({
       component: CategoriaDetalleComponent,
-      cssClass: 'smallscreen',
       componentProps: {
         id
       }

@@ -138,6 +138,8 @@ export class NuevoProductoComponent implements OnInit {
 
   crearCat() {
 
+    if (this.categNueva.descripcion === '') { return; }
+
     this.categNueva.descripcion = this.nuevoProd.categoria.descripcion;
     this.microService.nuevCat(this.categNueva)
       .subscribe((resp) => {

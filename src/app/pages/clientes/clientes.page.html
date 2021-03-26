@@ -4,7 +4,22 @@
     <ion-refresher slot="fixed" (ionRefresh)="recargar($event)">
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
-    <ion-searchbar placeholder="Buscar Cliente" inputmode="decimal" type="decimal" debounce="700" animated [value]="textoBuscar" (ionChange)="buscar( $event )"></ion-searchbar>
+    <ion-item lines="none" class="ion-text-center" *ngIf="bandera === 0" color="primary">
+        <ion-list slot="end">
+            <ion-item lines="none" color="primary">
+                <ion-label>
+                    <h3>MOSTRAR</h3>
+                </ion-label>
+                <ion-select name="filtro" value="10" (ionChange)="cambioFiltro($event)">
+                    <ion-select-option value="5">5</ion-select-option>
+                    <ion-select-option value="10">10</ion-select-option>
+                    <ion-select-option value="15">15</ion-select-option>
+                    <ion-select-option value="20">20</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </ion-item>
+    <ion-searchbar placeholder="Buscar Cliente" inputmode="text" type="text" debounce="700" animated [value]="textoBuscar" (ionChange)="buscar( $event )"></ion-searchbar>
 
     <!-- todos los clientes -->
     <ion-list *ngIf="bandera === 0">
@@ -13,28 +28,6 @@
             <ion-label lines="full"> {{cliente.nombre | titlecase }} </ion-label>
         </ion-item>
     </ion-list>
-    <br />
-    <ion-item lines="none" class="ion-text-center" *ngIf="bandera === 0" color="primary">
-        <ion-button *ngIf="pagina !== 1" (click)="siguientes('atras')" color="primary" slot="start">
-            <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
-        </ion-button>
-        <ion-item lines="none" color="primary">
-            <ion-label>Pag. {{pagina}}/{{total_pag}} </ion-label>
-        </ion-item>
-        <ion-list slot="end">
-            <ion-item lines="none" color="primary">
-                <ion-icon name="list"></ion-icon>
-                <ion-select name="filtro" value="10" (ionChange)="cambioFiltro($event)">
-                    <ion-select-option value="5">5</ion-select-option>
-                    <ion-select-option value="10">10</ion-select-option>
-                    <ion-select-option value="15">15</ion-select-option>
-                </ion-select>
-            </ion-item>
-        </ion-list>
-        <ion-button *ngIf="pagina !== total_pag" (click)="siguientes('siguiente')" color="primary" slot="end">
-            <ion-icon slot="icon-only" name="chevron-forward"></ion-icon>
-        </ion-button>
-    </ion-item>
 
     <!-- resultado busqueda -->
 
@@ -69,3 +62,19 @@
         </ion-fab-button>
     </ion-fab>
 </ion-content>
+
+<ion-footer *ngIf="bandera === 0">
+    <ion-toolbar color="primary" class="ion-no-padding">
+        <ion-item color="primary" class="ion-text-center" lines="none">
+            <ion-button [disabled]="pagina === 1" (click)="siguientes('atras')" color="primary" slot="start" size="default">
+                <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
+            </ion-button>
+            <ion-label>
+                <h3>PAGINA {{pagina}} DE {{total_pag}}</h3>
+            </ion-label>
+            <ion-button [disabled]="pagina === total_pag" (click)="siguientes('siguiente')" color="primary" slot="end" size="default">
+                <ion-icon slot="icon-only" name="chevron-forward"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ion-toolbar>
+</ion-footer>

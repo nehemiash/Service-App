@@ -23,7 +23,7 @@ export class ProductosPage implements OnInit {
   edit = false;
   limite = 20;
   pagina = 1;
-  total_pag;
+  totalpag;
   sort = '_id';
 
 
@@ -44,7 +44,6 @@ export class ProductosPage implements OnInit {
   async verDetalle(id: string) {
     const modal = await this.modalCtrl.create({
       component: ProductoDetalleComponent,
-      cssClass: 'smallscreen',
       componentProps: {
         id
       }
@@ -81,7 +80,7 @@ export class ProductosPage implements OnInit {
         this.productos.push(...resp.productos);
 
         this.pagina = resp.pagina;
-        this.total_pag = resp.total_paginas;
+        this.totalpag = resp.total_paginas;
 
         if (event) {
           event.target.complete();

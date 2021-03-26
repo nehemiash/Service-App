@@ -1,59 +1,64 @@
 <app-header titulo="Repuestos"></app-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-no-padding">
     <ion-refresher slot="fixed" (ionRefresh)="recargar($event)">
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
-    <ion-searchbar placeholder="Buscar Producto" inputmode="decimal" type="decimal" debounce="700" animated [value]="textoBuscar" (ionChange)="buscar( $event )"></ion-searchbar>
-    <!-- todos los repuestos -->
-    <ion-grid *ngIf="bandera === 0" class="ion-text-uppercase">
-        <ion-row class="tablaHeader">
-            <ion-col size="1">Cod</ion-col>
-            <ion-col size="5">Descripcion</ion-col>
-            <ion-col size="1">Marca</ion-col>
-            <ion-col size="2">Parte</ion-col>
-            <ion-col size="2">Categoria</ion-col>
-            <ion-col size="1">Precio</ion-col>
-        </ion-row>
+    <ion-item lines="none" class="ion-no-padding" *ngIf="bandera === 0" color="primary">
+        <ion-list slot="end">
+            <ion-item color="primary" lines="none">
+                <ion-label>
+                    <h4>ORDEN</h4>
+                </ion-label>
+                <ion-select name="filtro" value="descripcion" (ionChange)="ordenarPor($event)">
+                    <ion-select-option value="descripcion">DESCRIPCION</ion-select-option>
+                    <ion-select-option value="numParte">PARTE</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+        <ion-list slot="end">
+            <ion-item lines="none" color="primary">
+                <ion-label>
+                    <h3>MOSTRAR</h3>
+                </ion-label>
+                <ion-select name="filtro" value="10" (ionChange)="cambioFiltro($event)">
+                    <ion-select-option value="5">5</ion-select-option>
+                    <ion-select-option value="10">10</ion-select-option>
+                    <ion-select-option value="15">15</ion-select-option>
+                    <ion-select-option value="20">20</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </ion-item>
+    <ion-searchbar placeholder="Buscar Repuesto" inputmode="decimal" type="decimal" debounce="700" animated [value]="textoBuscar" (ionChange)="buscar( $event )"></ion-searchbar>
 
-        <ion-row *ngFor="let repuesto of repuestos;let i = index" button (click)="verDetalle( repuesto._id )" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
-            <ion-col size="1">{{repuesto.codigo}}</ion-col>
-            <ion-col size="5">{{repuesto.descripcion}}</ion-col>
-            <ion-col size="1">{{repuesto.marca}}</ion-col>
-            <ion-col size="2">{{repuesto.numParte}}</ion-col>
-            <ion-col size="2">{{repuesto.categoria.descripcion}}</ion-col>
-            <ion-col size="1">{{repuesto.precioVenta}}</ion-col>
-        </ion-row>
-        <ion-row class="tablaFooter"></ion-row>
-    </ion-grid>
+    <!-- todos los repuestos -->
+    <ion-list *ngIf="bandera === 0">
+        <ion-item *ngFor="let repuesto of repuestos;let i = index" button (click)="verDetalle( repuesto._id )" lines="full">
+            <ion-label lines="full">
+                <h2>{{repuesto.descripcion | uppercase }}</h2>
+                <p class="x-small">{{repuesto.numParte | uppercase}} - {{repuesto.categoria.descripcion | uppercase}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
 
     <!-- resultado busqueda -->
-    <ion-grid *ngIf="bandera === 1" class="ion-text-uppercase">
-        <ion-row class="tablaHeader">
-            <ion-col size="1">Cod</ion-col>
-            <ion-col size="5">Descripcion</ion-col>
-            <ion-col size="1">Marca</ion-col>
-            <ion-col size="2">Parte</ion-col>
-            <ion-col size="2">Categoria</ion-col>
-            <ion-col size="1">Precio</ion-col>
-        </ion-row>
-        <ion-row *ngFor="let repuesto of buscaRepuestos; let i = index" button (click)="verDetalle( repuesto._id )" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
-            <ion-col size="1">{{repuesto.codigo}}</ion-col>
-            <ion-col size="5">{{repuesto.descripcion}}</ion-col>
-            <ion-col size="1">{{repuesto.marca}}</ion-col>
-            <ion-col size="2">{{repuesto.numParte}}</ion-col>
-            <ion-col size="2">{{repuesto.categoria.descripcion}}</ion-col>
-            <ion-col size="1">{{repuesto.precioVenta}}</ion-col>
-        </ion-row>
-        <ion-row class="tablaFooter"></ion-row>
-    </ion-grid>
+    <ion-list *ngIf="bandera === 1">
+        <ion-item *ngFor="let repuesto of buscaRepuestos; let i = index" button (click)="verDetalle( repuesto._id )" lines="full">
+            <!-- <ion-icon slot="start" name="ellipse-outline" color="medium" size="large"></ion-icon> -->
+            <ion-label lines="full">
+                <h2>{{repuesto.descripcion | uppercase }}</h2>
+                <p class="x-small">{{repuesto.numParte | uppercase}} - {{repuesto.categoria.descripcion | uppercase}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
 
     <!-- si no hay nada -->
     <ion-list *ngIf="nada">
         <ion-grid>
             <ion-row>
                 <ion-col class="ion-text-center">
-                    <label> No se encontro ningun repuesto 😢</label>
+                    <label> No se encontró ningun repuesto 😢</label>
                 </ion-col>
             </ion-row>
         </ion-grid>
@@ -66,12 +71,24 @@
         </ion-row>
     </ion-grid>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="bottom20 right20">
-        <ion-fab-button (click)="onClick()" color="success">
+        <ion-fab-button (click)="onClick()" color="primary">
             <ion-icon name="add" size="large"></ion-icon>
         </ion-fab-button>
     </ion-fab>
-
-    <!-- <ion-infinite-scroll [disabled]="!habilitado" threshold="100px" (ionInfinite)="siguientes($event)">
-        <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Cargando..."> </ion-infinite-scroll-content>
-    </ion-infinite-scroll> -->
 </ion-content>
+
+<ion-footer *ngIf="bandera === 0">
+    <ion-toolbar color="primary" class="ion-no-padding">
+        <ion-item color="primary" class="ion-text-center" lines="none">
+            <ion-button [disabled]="pagina === 1" (click)="siguientes('atras')" color="primary" slot="start" size="default">
+                <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
+            </ion-button>
+            <ion-label>
+                <h3>PAGINA {{pagina}} DE {{totalpag}}</h3>
+            </ion-label>
+            <ion-button [disabled]="pagina === totalpag" (click)="siguientes('siguiente')" color="primary" slot="end" size="default">
+                <ion-icon slot="icon-only" name="chevron-forward"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ion-toolbar>
+</ion-footer>

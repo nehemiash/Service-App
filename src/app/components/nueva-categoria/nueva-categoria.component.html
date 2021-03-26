@@ -1,14 +1,15 @@
 <ion-header>
     <ion-toolbar color="primary">
-        <ion-title class="negrita">Crear Nueva Categoria</ion-title>
+        <ion-title>NUEVO</ion-title>
         <ion-buttons slot="start">
-            <ion-button slot="end">
-                <ion-icon name="pricetags" slot="icon-only"></ion-icon>
+            <ion-button (click)="cerrarModal()" slot="start">
+                <ion-icon name="chevron-back" slot="icon-only"></ion-icon>
             </ion-button>
-        </ion-buttons>
-        <ion-buttons slot="end">
-            <ion-button (click)="cerrarModal()">
-                <ion-icon slot="end" name="close" size="large" slot="icon-only" shape="round"></ion-icon>
+
+            <ion-button (click)="cerrarModal()" slot="start">
+                <ion-label>
+                    <h3>CANCELAR</h3>
+                </ion-label>
             </ion-button>
         </ion-buttons>
     </ion-toolbar>
@@ -27,25 +28,23 @@
                     <ion-item>
                         <ion-label class="negrita" color="dark">Tipo:</ion-label>
                         <ion-select id="tipo" name="tipo" [(ngModel)]="nuevaCat.tipo" value="Tipo" interface="popover" required class="ion-text-uppercase">
-                            <ion-select-option value="producto" class="ion-text-uppercase">PRODUCTO</ion-select-option>
-                            <ion-select-option value="repuesto" class="ion-text-uppercase">REPUESTO</ion-select-option>
+                            <ion-select-option value="producto" class="ion-text-capitalize">PRODUCTO</ion-select-option>
+                            <ion-select-option value="repuesto" class="ion-text-capitalize">REPUESTO</ion-select-option>
                         </ion-select>
                     </ion-item>
                 </ion-col>
             </ion-row>
+            <br />
             <ion-row>
-                <ion-col class="ion-text-center top50">
-                    <ion-button type="submit" color="success" shape="round" [disabled]="fCategoria.invalid">
-                        <ion-label>GUARDAR</ion-label>
-                    </ion-button>
-                    <ion-button (click)="limpiar()" color="warning" shape="round">
-                        <ion-label>LIMPIAR</ion-label>
-                    </ion-button>
-                    <ion-button (click)="cerrarModal()" color="danger" shape="round">
-                        <ion-label>CANCELAR</ion-label>
+                <ion-col size="12" class="ion-text-center">
+                    <ion-button type="submit" [disabled]="fCategoria.invalid" size="default">
+                        <ion-label>
+                            <h3>GUARDAR</h3>
+                        </ion-label>
                     </ion-button>
                 </ion-col>
             </ion-row>
+            <br />
         </form>
     </ion-grid>
 </ion-content>

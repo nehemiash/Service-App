@@ -35,27 +35,25 @@
                         </ion-item>
                         <ion-item lines="full">
                             <ion-label class="negrita" color="dark">Tecnico:</ion-label>
-                            <ion-toggle mode="md" [(ngModel)]="userPerfil.tecnico" name="tecnico"></ion-toggle>
+                            <ion-toggle [(ngModel)]="userPerfil.tecnico" name="tecnico"></ion-toggle>
                         </ion-item>
                     </ion-list>
                 </ion-col>
             </ion-row>
-
+            <br />
             <ion-row>
-                <ion-col class="ion-text-center">
-                    <ion-button type="submit" color="success" shape="round" [disabled]="fActualizar.invalid">
+                <ion-col size="12" class="ion-text-center">
+                    <ion-button type="submit" color="primary" [disabled]="fActualizar.invalid">
                         <ion-label>GUARDAR</ion-label>
-                        <!-- <ion-icon slot="icon-only" name="save"></ion-icon> -->
+                    </ion-button>
+                </ion-col>
+                <ion-col size="12" class="ion-text-center">
+                    <ion-button (click)="logout()" color="danger" size="small">
+                        <ion-label>SALIR</ion-label>
                     </ion-button>
                 </ion-col>
             </ion-row>
-            <ion-row class="top-50">
-                <ion-col class="ion-text-center">
-                    <ion-button (click)="logout()" color="danger" shape="round">
-                        <ion-label>CERRAR SESION</ion-label>
-                    </ion-button>
-                </ion-col>
-            </ion-row>
+            <br />
         </form>
     </ion-grid>
 </ion-content>

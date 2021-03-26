@@ -18,17 +18,7 @@ export class NuevoClienteComponent implements OnInit {
   paises: Observable<Paises[]>;
 
   nuevoCli: ClienteDetalle = {
-    nombre: 'Aspirino Bayer',
-    documento: '23451234',
-    contacto: 'Fulano',
-    empresa: false,
-    ruc: '23451234-1',
-    telefono: '021291304',
-    email: 'aspirinabayer@gmail.com',
-    direccion: 'Cacique Lambare y Feliz Bogado',
-    ciudad: 'Lamber City',
-    pais: 'Paraguay',
-    celular: '0986223340',
+    pais: 'paraguay',
   };
 
   clienteSel: ClienteDetalle;
@@ -54,7 +44,7 @@ export class NuevoClienteComponent implements OnInit {
   limpiar() {
     this.nuevoCli = {};
     this.nuevoCli.empresa = false;
-    this.nuevoCli.pais = 'Paraguay';
+    this.nuevoCli.pais = 'paraguay';
   }
 
   async nuevoCliente(fCliente: NgForm) {
